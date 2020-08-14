@@ -1,0 +1,21 @@
+gitty-gitty, the (general | GNU) template generation tools,
+are a set of scripts for creating a whole set of sources
+which may already be compiled and installed using the GNU
+development tools.
+
+Think of gtgt as a program which is able to create an already
+compilable, very sophisticated "hello world" program, written
+in C or C++ and constituted by a main program, two internal
+modules (classes), and one static and one shared library. 
+
+This complex "Hello World" is already fully embedded into
+the GNU autoconf/automake development environment. By using
+gitty-gitty, you will get a template of sources for the main
+cases you might meet, and which you can also use as examples
+for automake, autoconf, etc. 
+
+gtgt (Gnu-Template-Generation-Tools) are scripts to create
+a sophisticated teaching "hello world" written in C or C++:
+You can see how to use modules/classes static and shared
+libraries, all being documented by doxygen
+and fully embedded into GNU automake.

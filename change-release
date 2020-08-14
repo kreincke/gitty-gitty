@@ -1,0 +1,128 @@
+#!/bin/bash
+
+# Copyright (C) 2001/2002/2003/2004/2005/2006/2007/2008/2009 
+# karsten reincke <karsten.reincke@fodina.de>
+# This file is part of of the software-project GTGT.
+#
+# GTGT is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software 
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#  
+# file <change-release> version <#3.1.0#> of project <GTGT>
+
+#---------------------------------------------------------------------------------
+#  define the mimetypes which shall be reviewed
+CFP="\
+*.html \
+*.txt \
+*.cpp \
+*.cc \
+*.c \
+*.h \
+*.sh \
+*.c \
+*.in \
+AUTHORS \
+ChangeLog \
+configure.in \
+Doxyfile \
+Makefile.am \
+NEWS \
+README \
+THANKS \
+"
+
+#---------------------------------------------------------------------------------
+# change the following variables for adding new release numbers 
+OLDRELEASE=3    	# defines a release and a library interface
+OLDREVISION=1   	# defines a more important revision of a release
+OLDSTEP=0       	# defines a lowlevel revesion of a release
+      	      	      	# (doesn't concern libraries
+OLDLIBAGE=0   	      	# indicates how many of the elder
+      	      	      	# library-releases offer the same interface 
+
+NEWRELEASE=3
+NEWREVISION=2
+NEWSTEP=0
+NEWLIBAGE=0   	      	
+
+#---------------------------------------------------------------------------------
+# change the following 6 variables only if you know the revision system of libtool
+OLDLIBTOOLCURRENT="${OLDRELEASE}"
+OLDLIBTOOLREVISION="${OLDREVISION}"
+OLDLIBTOOLAGE="${OLDLIBAGE}"
+
+NEWLIBTOOLCURRENT="${NEWRELEASE}"
+NEWLIBTOOLREVISION="${NEWREVISION}"
+NEWLIBTOOLAGE="${NEWLIBAGE}"
+
+#################################################################################
+# don't change the following lines !
+
+OLDVERSION="${OLDRELEASE}\.${OLDREVISION}\.${OLDSTEP}"
+OLDLIBVERSION="${OLDLIBTOOLCURRENT}\:${OLDLIBTOOLREVISION}\:${OLDLIBTOOLAGE}"
+
+NEWVERSION="${NEWRELEASE}\.${NEWREVISION}\.${NEWSTEP}"
+NEWLIBVERSION="${NEWLIBTOOLCURRENT}\:${NEWLIBTOOLREVISION}\:${NEWLIBTOOLAGE}"
+
+if [ "$1" = "-h" -o "$1" = "--help" ]
+then
+  echo "script for changing recursively all revision- and branchnumbers"
+  echo "usage:  change-release [ -h | --help | * | FILENAME ... ]"
+  echo "for inserting old and new numbers please edit change-release"
+  exit
+fi
+
+echo $CFP | tr ' ' '\n'> xyz.tmp
+cat xyz.tmp | while read mt; do 
+  echo "changing files of mimetyp $mt";
+  find . -type f -name "$mt" |
+  while read file; do
+    echo "updating file <$file>" 
+    cat $file | sed "/<#$OLDVERSION#>/s/$OLDVERSION/$NEWVERSION/g" > xxx.tmp
+    mv xxx.tmp $file
+  done
+done
+
+find . -type f -name "configure.in" |
+while read file; do
+  echo "setting $OLDVERSION onto $NEWVERSION in configure.in"
+  mv $file $file.sav
+  sed -e "/(mypmpsfactory,$OLDVERSION)/s/$OLDVERSION/$NEWVERSION/" $file.sav > $file
+  rm $file.sav
+done
+
+find . -type f -name "Makefile.am" |
+while read file; do
+  echo "setting $OLDVERSION onto $NEWVERSION in libsection of $file"
+  mv $file $file.sav
+  sed -e "/info $OLDLIBVERSION/s/$OLDLIBVERSION/$NEWLIBVERSION/" $file.sav > $file 
+  rm $file.sav
+done
+
+find . -type f -name "Doxyfile" |
+while read file; do
+  echo "setting $OLDVERSION onto $NEWVERSION in Doxyfile"
+  mv $file $file.sav
+  sed -e "/PROJECT_NUMBER = $OLDVERSION/s/$OLDVERSION/$NEWVERSION/" $file.sav > $file 
+  rm $file.sav
+done
+
+find . -type f -name "proj.spec" |
+while read file; do
+  echo "setting $OLDVERSION onto $NEWVERSION in prj.spec"
+  mv $file $file.sav
+  sed -e "/define PRJ_RELEASE $OLDVERSION/s/$OLDVERSION/$NEWVERSION/" $file.sav > $file
+  rm $file.sav
+done 
+rm  xyz.tmp
+

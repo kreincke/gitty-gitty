@@ -1,0 +1,45 @@
+Welcome to the project GTGT / release <#3.2.0#>
+Copyright (C) 2001/2002/2003 
+karsten reincke <karsten.reincke@fodina.de>
+-------------------------------------------------------
+This file is part of of the software-project GTGT.
+
+GTGT is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+GTGT is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software 
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+Please see the file COPYING for details.
+------------------------------------------------------- 
+
+GTGT THANKS file
+
+The project GTGT has originally been initiated by karsten reincke.
+Many people have further contributed to GTGT by reporting problems, 
+suggesting various improvements, or submitting actual code. Here is
+a list of these people. Help me keep it complete and exempt of errors.
+
+--- Christian Heissing
+    has tested and corrected the first published version 0.8
+    
+--- Eleftherios Gkioulekas
+    is the main person who must be named at this point: he wrote not only
+    the autotools, but the handout: learning the GNU development tools
+    both have been a base for the general software-project prepare-tools,
+    the autotools as scipt-base and the handout as learning-base.
+    
+--- Guido Sassmannshausen
+    has corrected the documentation
+    
+--- ICDM (http://www.icdm.de mailto:dialog@icdm.de)
+    my company, which wants to have such software-project prepare-tools,
+    which has decided to reform gnu-software and which therefore has 
+    decided to give new gnu-software back.

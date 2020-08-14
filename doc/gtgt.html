@@ -1,0 +1,706 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta name="description" content="general gnu template generation tools" />
+  <meta name="author" content="Karsten Reincke"/>
+  <meta name="keywords" content="gtgt gitty-gitty general-gnu-template-generation-tools linux" />
+  <meta name="date" content="2007-04-11T22:46:47+0200"/>
+  <title>gtgt (gitty-gitty)</title>
+</head>
+<body bgcolor="#b4b6b4" text="#000000" link="#ff0000" vlink="#ffcc00" alink="#008000">
+<div align="center">
+  <h2><b><font color="black">gtgt</font></b></h2>
+  <h2><i><font color="red">gitty-gitty</font></i></h2>
+  <h3><b><font color="#ffbb00">The General/GNU Template Generation Tools</font></b></h3>
+  <h3><i>version <#3.2.0#></i></h3>
+</div>
+
+<h3><i>(0) Content of this Explanation</i></h3>
+
+<ul>
+<li>(1) <a href="#gp">General Purpose</a></li>
+<li>(2) <a href="#ia">Involved Applications</a></li>
+<li>(3) <a href="#ic">Installation Conditions</a></li>
+<li>(4) <a href="#sh">Special Hints For The Usage (handbook)</a></li>
+<li>(4.01) <a href="#sh401">How do I create my first project?</a></li>
+<li>(4.02) <a href="#sh402">The configuration file gcng.conf and 
+    what the hell does  &quot;company license&quot; mean?</a></li>
+<li>(4.03) <a href="#sh403">What if I want to build my tarball with more
+    or other sourcefiles than given by the gptg-script?</a></li>
+<li>(4.04) <a href="#sh404">What if I don't want to write libraries?</a></li>
+<li>(4.05) <a href="#sh405">What if I don't want to work with deep
+    embedded daughter modules?</a></li>
+<li>(4.06) <a href="#sh406">What if I only want to offer a set of scripts? </a></li>
+<li>(4.07) <a href="#sh407">What if I want to add a new sister module or class? </a></li>
+<li>(4.08) <a href="#sh408">What if I want to add a new module or class for libraries?</a></li>
+<li>(4.09) <a href="#sh409">What if I want create a new library ? </a></li>
+<li>(4.10) <a href="#sh410">What if I want to add doc files or scripts ?</a></li>
+<li>(4.11) <a href="#sh411">What if I want to use the VPATH ?</a></li>
+<li>(4.12) <a href="#sh412">What about the coding and documentation style?</a></li>
+<li>(4.13) <a href="#sh413">What if I want to change the numbers
+    of the release or the revision?</a></li>
+<li>(4.14) <a href="#sh414">What if I want to add debugging and
+    profiling informations during the
+    compilation?</a></li>
+<li>(4.15) <a href="#sh415">
+   What if I want to import my newly generated project 
+    into a cvs or subversion repository or to use
+    wildcards to commit and/or add files?</a></li>
+<li>(4.16) <a href="#sh416">What if I want to build a rpm-package on the base of my tarball?</a></li>
+<li>(5.A) <a href="#c5A">What if I need more informations?</a></li>
+<li>(5.B) <a href="#c5B">What if I want to add some remarks?</a></li>
+<li>(6) <a href="#c6">Thanks</a></li>
+</ul>
+
+<p>copyright (c) 2000/2001/2002/2003/2004/2005/2006/2007 karsten reincke  
+(<a href="mailto:karsten.reincke@fodina.de">karsten.reincke@fodina.de</a>)
+</p>
+
+<h3><i>(1) <a name="gp">General Purpose</a></i></h3>
+<p>
+The <b>(general | GNU) template generation tools</b> are a set of scripts
+for creating a whole set of sources, which may already be
+compiled and installed by using the GNU development tools.
+Think of <b><i>gtgt</i></b> as a program which is able to create an already
+compilable, very sophisticated &quot;hello world&quot; program, written
+in C or C++ and constituted by a main program,
+two internal modules (classes), one static and one shared library. Using gitty-gitty
+you will get a template of sources for the main cases you
+might meet, and which you can also use as examples for automake, autoconf and so on.
+</p>
+
+<p>
+For understanding the general purpose of the 
+<b>(general | GNU)-template-generation-tools</b>, we should have a look
+at an abbreviated version of the history of programming
+with gcc:
+</p>
+
+<ol>
+<li>At the beginning we have nothing but <i><b>gcc</b></i>: 
+we have to order each act of compilation with regards to name the right versions
+of sourcecodes on the command-line. <b>(practical, but not comfortable)</b>
+</li>
+<li>
+The next step in evolution is &quot;MAKE&quot;, now we are not only able
+to create scripts for compiling more than one set of sources, but now
+we can demand to respect dependencies. <b>(comfortable, but not
+the end of the world)</b>
+</li>
+<li>
+Then there has been the problem to compile for more than one specific
+hardware environment. And this problem leads to the solution by using
+<b><i>autoconf</i></b>: We are setting up two scripts, configure.in and
+Makefile.in. In the first one we determine in a declarative
+way those aspects, which we want to have tested. Then we call
+the tool 'autoconf' which takes the <b><i>configure.in</i></b> scripts and
+creates the well known <b><i>configure</i></b> script. This script itself
+takes the <b><i>makefile.in</i></b>, tests the environment and replaces
+variables in the makefile.in by the test-results and
+creates the normal makefiles, which are now very sophisticated.
+But at this point of history, we only have to create the <b><i>configure.in</i></b>
+and the <b><i>makefile.in</i></b>, and we can use informations about the hardware
+used for the compilation, by writing variables into our makefile.in
+<b>(a bit better, but still optimizable)</b>
+</li>
+<li>
+&quot;Why&quot; - so the next question - &quot;shouldn't it be possible to use
+a high-level declarative language for saying what we want to compile
+instead of using the old makefile-language?&quot; The answer has been
+<b><i>automake</i></b>. This script takes <b><i>Makefile.am</i></b>
+and <b><i>configure.in</i></b> and creates <b><i>Makefile.in</i></b>.
+and as software-developpers we now only have to write our intentions into Makefile.am
+and configure.in. <b>(the world seems to be good, but not the best
+of all possible ones)</b>
+</li>
+<li>
+The GNU development tools demand a lot more files than <b><i>Makefile.am</i></b>
+and <b><i>configure.in</i></b>: One has to touch at least NEWS, Changelog, Install,
+README ..., and you have to create a directory structure. 
+For automating this procedure, <b><i>autotools</i></b> have been offered:
+Here you may create a whole but empty environment for the GNU
+development tools and you have a tool to generate files containing a copyright-note. 
+(This major step has been 
+done by <a href="http://www.amath.washington.edu/~lf/tutorials/autoconf/">
+Eleftherios Gkioulekas</a>) <b>(yoop, yoop, but then ...)</b>
+</li>
+<li>
+There are two demands, which can't be fullfilled by autotools. If you
+want to have your own licenses in your sources, you can't use autotools
+because they only offer GNU files and -conditions. Ok, GNU is quite fine,
+but it's not everything. And although you are using autotools you still have to 
+declare and define all functions inside of your sources and you
+need to setup the correct Makefile.am and configure.in in a corresponding way. 
+That can be automised too - at least for a starting version.
+And that's the task of the
+<b><i>(general | GNU) template generation tools</i></b>. They are able to replace the
+autotools and contain three scripts:
+ <b><i>gcng</i></b>, <b><i>gscg</i></b> and <b><i>gptg</i></b>.
+</li>
+</ol>
+
+<h3><i>(2) <a name="ia">The Constituting Tools</a></i></h3>
+
+<dl>
+  <dt><b><i>gcng = General Copyright Note Generator</i></b></dt>
+  <dd>
+    <p>Script of generating files, which already contain the correct
+        copyright header, regardless of which copyright and
+       which programming language shall be used</p>
+  </dd>
+  <dt><b><i>gscg = General Source Code Generator</i></b></dt>
+  <dd>
+    <p>Script for generating all already compilable source files of 
+       a software module, namely the header file as a module declaration
+       and the source file as a module defintion.</p>
+    <p>You can select c or c++ as the programming-language, which is
+       used for writing these functions. Think of gscg as a program, which is 
+       able to create very sophisticated &quot;hello world&quot; modules.</p>
+  </dd>
+  <dt><b><i>gptg = General Project Template Generator</i></b></dt>
+  <dd>
+    <p>Script for generating the whole set of files for an already 
+       compilable and installable software project: Using gscg 
+       + gcng too, gptg will offer a project directory, which is 
+       completely prepared for utilisation of autoconf and automake
+       and which contains a quite sophisticated &quot;hello world&quot; program
+       - being built upon two modules and one static library -
+       and which already offers a
+       shared library.</p>
+  </dd>
+</dl>
+<p>
+Using these tools (which are using themselves too), you get a template, 
+which only needs to be adopted to what you want to have. 
+</p>
+<h3><i>(3) <a name="ic">Installation Conditions</a></i></h3>
+<p>
+For being able to install and <strong>use</strong> the gtgt you need
+</p>
+<ul>
+<li>Normal gcc development tools (normally you are already having them)</li>
+<li>autoconf</li>
+<li>automake</li>
+<li>libtools</li>
+</ul>
+<p>For installing the gtgt you do the following:</p>
+<ul>
+<li>gunzip gtgt-xxx.tgz</li>
+<li>tar -xvf gtgt-xxx.tar</li>
+<li>cd gtgt-xxx</li>
+<li>./configure --prefix=/whereever/youwant/tohave/thetools</li>
+<li>make</li>
+<li>su</li>
+<li>make install</li>
+</ul>
+<p>
+Note: It's not nescessary to have autoconf and automake for installing gtgt 
+but for using it, because adding a new piece of sourcecode includes modification of 
+Makefile.am (and configure.in). And in all those cases you need to call automake and 
+autoconf at least one time, before being able to call configure for the set.
+</p>
+<h3><i>(4) <a name="sh">Special Hints For Usage (Handbook)</a></i></h3>
+<h3><strong>(4.1) <a name="sh401">How do I create my first project?</a></strong></h3>
+<ol>
+<li><p>Create a short project name like 'mypo', which should not contain blanks or
+other seperators. Think of it as a name, not as a double name or
+sentence or anything else. Following the c/c++-coding-standard this name will
+automatically be changed in some cases: he can be capitalized or written in
+lower or upper cases.
+</p></li>
+<li><p>Decide, whether you want to use C or C++ as a programming-language.
+(If you only want to write shell scripts, you may choose any of these.)
+</p></li>
+<li><p>Decide with which main release number you want to begin. Usually 
+you start with zero (select an integer like 1,2,3, not any real or float number
+like 1.2 and so on)
+</p></li>
+<li><p>Decide with which revision number you want to begin. Usually 
+you start with one (select an integer like 1,2,3, not any real or float number
+like 1.2 and so on)
+</p></li>
+<li><p>Type 'gptg --help' to see in  which way these decisions can be inserted
+into gptg:</p>
+
+<table border="1">
+<tr>
+  <td>gptg</td>
+  <td>OPTIONS</td>
+  <td>[PROJECT] </td>
+  <td>[RELEASE]</td>
+  <td>[REVISION]</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>-h, --help, -v, --version, -cpp (Language C++), -c (Language C)</td>
+  <td>projectname</td>
+  <td>start release number</td>
+  <td>start release branch number</td>
+</tr>
+</table>
+</li>
+
+<li>
+<p>gptg uses gscg and gscg uses gcng. gcng itself needs a file
+gcng.conf in the working-directory. This file contains 6 lines:
+</p>
+  <ol>
+  <li>The authorname</li>
+  <li>The email adress of the author</li>
+  <li>The year of publishing the program (will be inserted automatically)</li>
+  <li>The name of the company licensing the sources</li>
+  <li>The absolute path to a short version of the company's license</li>
+  <li>the absolute path to a long version of the company's license</li>
+  </ol>
+<p>If this file doesn't exist, you will be asked for the informations
+and it will be created. If your company is GNU, you won't be asked
+for licenses, because they are known. If not, you have to create
+such licenses. They will be used automatically for generating
+sourcecode headers. Examples for those company licenses
+can be found in the documentation directory of the gtgt,
+which will be installed under $PREFIX/share/doc/gtgt. </p>
+</li>
+
+<li><pre>user@computer&gt;&nbsp;<strong><em>gptg&nbsp;-cpp&nbsp;mypo&nbsp;0&nbsp;1</em></strong></pre> 
+  will generate a project named mypo, positioned in a directory mypo-0.1 
+</li>
+<li><p>Note: After changing into your project directory, you can already type ./configure, make, make distcheck,
+or make install. You have a project which at first installs one application named like your project and
+made to modules and which installs two libraries as a second step, a static and a shared one. You now have 
+to adopt these possibilities to your whishes and you can use this automatically generated project
+as a teaching example to handle autoconf and configure.in, automake and Makefile.am and configure.in
+while working at your own specific project. Because the sources are following the c/c++ coding standard
+and are already commented in the doxygen style, you can take them as teaching examples for these aspects, too.
+</p></li>
+</ol>
+
+<h3><strong><a name="sh402">(4.02)</a> 
+    The configuration file gcng.conf and what the hell does &quot;company license&quot; mean?
+     </strong></h3>
+<p>
+Ok, GNU is good. Very good, indeed. But [ in very rare cases ;-) ] it's not evrything.
+Therefore, for example, the LGPL has been created. Well, you should be able to create 
+applications following the GNU methods and GNU recommendations
+and using the GNU tools - without publishing your results under the GPL. 
+In these cases you might want to distribute your sources under a special company license.
+And this license should be referred to by all your files.
+</p>
+
+<p>
+GNU uses the following way to mark the GNU sources as GNU sources:
+</p>
+<ol>
+<li>Inside of the project directory, there the whole GNU license is given to the user
+    who gets a source tarball for creating an application from the sources. This license
+    can be found in the file COPYING.</li>
+<li>Each sourcefile contains a short version of this license by listing up
+    the main points of the whole license and refering to file COPYING or the GPL</li>
+<li>Sometimes it's necessary to publish special parts of the tarball under a weaker license
+    than the other parts. For example remember the LGPL: In these cases such (library-)sources
+    contain a special hint.</li>
+</ol>
+<p>
+Think of the company license as a special &quot;GNU license&quot; of your company ;-). And therefore you should
+have two versions: The long version is that one, which shall be put into the file COPYING, and the short
+is that one, which will be used inside of the the files and which should refer to the long version.
+</p>
+<p>
+The last question could be this: How can I determine, to create a template for my company
+or for the GNU world? the answer is very simple: 
+</p>
+<ul>
+<li>If you insert the word GNU in the fourth
+line of the gcng.conf file, line 5 and 6 will be ignored and the normal GNU licenses will be
+inserted for case (1) and (2) of the above mentioned list. </li>
+<li>If you insert a different word than GNU in the fourth line of gcng.conf, line 5 and 6 will
+be evaluated as absolute pathnames of your company license files: line 5 as pathname
+of the abbreviated version, line 6 as pathname of the long version.</li>
+</ul>
+<p>
+The gtgt-tarball offers two license examples inside the doc-directory: the file
+&quot;company-license.long&quot; and the file &quot;company-license.short&quot;. Note: They haven't been
+juristically checked! They exist for demonstrating the technical possibilities.
+</p>
+<h3>
+<strong><a name="sh403">(4.03)</a> 
+What if I want to build my tarball with more or other sourcefiles than given by the gptg script?
+</strong>
+</h3>
+<p>
+Very simple, in the first part of the following chapters, we explain what
+you should do, if you don't want to use the full set of files. And in the
+second part we explain, what you need to do, if you want to expand set files.
+</p>
+<h3>
+<strong>
+<a name="sh404">(4.04)</a>
+<a name="dellib">What if I don't want to write libraries?</a>
+</strong>
+</h3>
+<p>Read ${YOURPRJ} as a name of your project:</p>
+<p />
+<ol>
+<li>Change into the toplevel of your project directory</li>
+<li>Delete the substring 'lib/Makefile' as parameter of the macro AC_OUTPUT in the file 'configure.in'</li>
+<li>Delete the directory 'lib'</li>
+<li>Delete the substring 'lib' as parameter of the macro SUBDIRS in the file 'Makefile.am'</li>
+<li>Change into the subdirectory src of your project directory</li>
+<li>Delete the substring '-l ${YOURPRJ}_stli' as parameter of the macro ${YOURPRJ}_LDADD
+   in the file 'Makefile.am'</li>
+<li>Delete the substring '-L$(topbuilddir)/lib' as parameter of the macro ${YOURPRJ}_LDFLAGS
+   in the file 'Makefile.am'</li>
+<li>Delete all lines containing the substring '_stli' in the source-files 
+   ${YOURPRJ}.c(pp)</li>
+<li>Call autoconf and automake or your reconf script</li>
+</ol>
+<h3>
+<strong>(4.05) <a name="sh405">What if I don't want to work with deep embedded daughter modules?</a></strong>
+</h3>
+<p />
+<ol>
+<li>change into the toplevel of your project directory</li>
+<li>Delete the substring 'src/damo/Makefile' as parameter of the macro AC_OUTPUT in the file 'configure.in'</li>
+<li>Change into the subdirectory src of your project-directory</li>
+<li>Delete the substring 'damo' as parameter of the macro SUBDIRS in the file 'Makefile.am'</li>
+<li>Delete all lines containing the substring 'damo' in the source-files 
+${YOURPRJ}.c(pp)</li>
+<li>Delete the directory 'damo' in your src-directory</li>
+<li>Call autoconf and automake or your reconf script</li>
+</ol>
+<h3>
+<strong>(4.06) <a name="sh406">What if I only want to offer a set of scripts?</a></strong>
+</h3>
+<p />
+<ol>
+<li><a href="#dellib">Delete the libraries</a> like described above</li>
+<li>Change back into the toplevel of your project directory</li>
+<li>Delete the substring 'src/Makefile' and 'src/damo/Makefile' as parameter of the
+  macro AC_OUTPUT in the file 'configure.in'</li>
+<li>Delete subdirectory src of your project directory</li>
+<li>Delete the substring 'src' as parameter of the macro SUBDIRS in the file 'Makefile.am'</li>
+<li>Call autoconf and automake or your reconf-script</li>
+</ol>
+<h3>
+<strong>(4.07) <a name="sh407">What if I want to add a new sister module or class?</a></strong>
+</h3>
+<p>Sister modules are sources with a declaring headerfile and a defining sourcefile
+physically lying in the same directory of the main sourcefile and being included.
+For generating such a module you may do this:</p>
+<p />
+<ol>
+<li>
+<p>Change into the subdirectory src of your project directory</p>
+</li>
+<li>
+<p>Call gscg and insert the parameters:</p>
+
+<table border="1">
+<tr>
+  <td>gscg</td>
+  <td>[-c|-cpp|-h|-v]</td>
+  <td>[-i|-s|-is]</td>
+  <td>[MODULE]</td>
+  <td>[PROJECT]</td>
+  <td>[RELEASE]</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>Select your programming language or 'help' or 'version'</td>
+  <td>
+    <ul>
+    <li>-i echos the corresponding headerfile</li>
+    <li>-s echos sourcecode for the module</li>
+    <li>-is writes include- + sourcecode as file</li>
+    </ul>
+  </td>
+  <td>should be a short module identifier without brackets, underlines, points etc. etc.</td>
+  <td>should be a short project identifier without brackets, underlines, points etc. etc.</td>
+  <td>release number (must be a float with two digits like 1.0 !!!)</td>
+</tr>
+</table>
+
+<p><b>user@mashine &gt;</b> <b><i>gscg&nbsp;-cpp&nbsp;-is&nbsp;modu&nbsp;mypo&nbsp;1.0</i></b> creates mypo.h and mypo.cpp</p>
+</li>
+<li>
+  <p>Include ${MODULENAME}.cpp and ${MODULENAME}.h in Makefile.am as arguments of ${YOURPROJECT}_SOURCES</p>
+</li>
+
+<li>Change back to the top of your project directory and call autoconf and automake or your reconf script</li>
+<li>Then write and include your module / class</li>
+</ol>
+
+<h3><strong>(4.08) <a name="sh408">What, if I want to add
+    a new module or class for libraries?</a></strong></h3>
+<p>Nearly the same as for adding a new sister module.
+   But act in the library directory instead of the source directory.</p>
+
+<h3><strong>(4.09) <a name="sh409">What, if I want to create a new library ?</a></strong></h3>
+<p>Nearly the same as for adding a new sister module. After having determined the library name
+(=module name) you need to insert the following into the Makefile.am of your lib-directory:
+</p>
+<ul>
+  <li>lib_LIBRARIES=lib${modulename}.a</li>
+  <li>lib${modulename}_a_sources= $your-sources</li>
+  <li>Don't forget to insert the new library name in src/Makefile under ${YOURPROJECT}_LDADD
+      as a string starting with -L</li>
+</ul>
+
+<h3><strong>(4.10) <a name="sh410">What, if I want to add doc files or scripts ?</a></strong></h3>
+
+<ul>
+  <li>Move the scripts and documentation files into the director doc respectively scripts</li>
+  <li>Change into the subdirectory doc resp. scripts of your project directory</li>
+  <li>Add the filenames of the new scripts to the variable EXTRA_DIST of Makefile.am . 
+      In case of shell-scripts, add the name also to the variable bin_SCRIPTS
+      and to CLEANFILES and insert any makefile target for those scripts.</li>
+</ul>
+
+<h3><strong>(4.11) <a name="sh411">What, if I want use VPATH ?</a></strong></h3>
+<p>
+The VPATH variable allows us to use other directories whose content is able
+to fulfill the dependencies although it's not directly integrated into
+the 'make' procedure. Using this variable, one can split the objectfiles
+and its sources. From make's point of view, it's a hack. But not all hacks
+are bad, aren't they?. Ok, do this (and write me, if you are sucessful ;-) ):
+</p>
+<ol>
+  <li>Change into the top of your project directory</li>
+  <li>Rename the subdirectory src into vpdir (or anything else)</li>
+  <li>Rename all those substrings 'src' into vpdir, which arise as contents of the variable
+      SUBDIRS in the main Makefile.am</li>
+  <li>Insert a new substring src into the content of the variable SUBDIRS in the main Makefile.am</li>
+  <li>Create a new subdirectory src</li>
+  <li>mv all sources vpdir/*.cpp *.c *.h from vpdir into the new directory src</li>
+  <li>Change into the new src directory</li>
+  <li>Edit a new src/Makefile.am</li>
+  <li>Insert into this src/Makefile.am the only variable EXTRA_DIST= $all-names-of-your-moved-sources</li>
+  <li>Insert into each Makefile.am arising in any directory under vpdir or lib the string
+      VPATH=$(top_srcdir)/src.</li>
+</ol>
+<p>The main point of this procedure is this: make recursively follows the structure of vpdir.
+There maket meets its targets. And it seeks the sources, named inside of the Makefile and
+not really being in the make directory. But make finds them none-the-less, because it looks
+for them in all directories named by the variable VPATH which in this case is
+indicating the directory source as an add-on</p>
+
+<h3><strong>(4.12) <a name="sh412">What about the coding and documentation style?</a></strong></h3>
+<p>
+Last but not least, we have added the doxygen documentation style into the automatically
+generated sourcefiles of your project initially created by the gitty-gitty-tools. This includes that
+</p>
+<ul>
+  <li>the correspondig default doxygen configuration file (named Doxyconf)
+    will automatically be generated inside of the project-directory</li>
+  <li>all pieces of sourcecode are already be commented in the doxygen style</li>
+  <li>the initial version of corresponding doxygen sourcecode documentation
+    will be automatically generated while creating the initial version of your project</li>
+  <li>the whole sourcecode doxygen documentation of the initial-version of your project
+    can be found under doc/doxygen/</li>
+</ul>
+<p>
+For being generally acceptable, we have adopted the c++ and c coding standard. But note:
+There doesn't exist &quot;<b>the</b> coding standard&quot;; you can find more than one which
+differ in more or less details. Therefore we give only one hint for a
+<a href="http://www.possibility.com/Cpp/CppCodingStandard.html">C++ Coding Standard</a>
+while recommending to have a look at the others, being found with some search engine.
+</p>
+
+<h3><strong>(4.13) <a name="sh413">What if I want to change the numbers
+    of the release or the revision?</a></strong></h3>
+<p>
+Last but not least we have integrated a script into the GNU-sourcetree which
+allows the change of the release- and the revisionnumber.</p>
+<p>Remember, if you let create the template of your project you have to name integers for the
+release and the revision on the commandline. these numbers will be merged
+into many places: for example into the short copyright line of each piece
+of sourcecode where the name of the file and that of the project is also
+announced.
+</p>
+<p>
+But there exist more important places where these numbers are inserted. There they will
+be evaluated for generating the tarball-number or the library-version. For updating
+all these case with one command <b>gptg</b> writes a script into your project-direcgtory.
+This script named <b><i>change-release</i></b> does what its name announces:
+it should be called with one
+or more file- or directorynames (or with *) as parameter. and for all these entities
+it recursively changes all relevant release/revision numbers.
+</p>
+<p>
+For using this script you have to respect the following points:
+</p>
+<ol>
+  <li>You shouldn't change the release/revision-strings manually. or at least
+      you have to respect the given syntactically structure.</li>
+  <li>If you want to increment (decrement ?-) ) the revison/release-number
+      you have to edit the script <b><i>change-release</i></b>: insert
+      the correct old versions of the numbers and the wished new versions
+      at the beginning of the script and then call <i>./change-release</i></li>
+  <li>Note, <b><i>change-release</i></b> isn't backward compatible. if
+      you want to use it in an existing project (made by GTGT release 1.1
+      or earlier) you have to recreate
+      it. and if you merge older pieces of sourcecode into that new
+      tree you have at least to replace the short-copy-right line
+      which signals filename, project and version-number 
+  </li>
+</ol>
+<p>
+Note: In the string "-version-info xc:xr:xa" ,
+which arises in the &laquo;Makefile.am&raquo; and is updated by the script
+&laquo;changerelease&raquo;, the integer at the position &laquo;xc&raquo; 
+means &laquo;current release&raquo;, the integer at the position 
+&laquo;xr&raquo; &laquo;revision&raquo; and the integer at the postion
+&laquo;xa&raquo; the &laquo;age&raquo; of the library. And the age of a
+library denotes the row of elder releases, which interfaces all only
+are expanded by the newer ones.
+</p>
+<p>
+But this row of integers "xc:xr:xa" arises not directly in the version
+of a shared library. You have to read such versionnumbers like the
+scheme &laquo;libxxx-so.xc.xa.xr&raquo;: the first integer of a
+library-version number denotes the current release, the second the age(!)
+and the third the the revision number.
+</P>
+<h3>
+  <strong>(4.14) <a name="sh414">
+    What if I want to add debugging and
+    profiling informations during the compilation?
+  </a></strong>
+</h3>
+<p>
+In each Makefile.am GTGT offers now four different lines with compiler flags:
+<dl>
+  <dt>In a Makefile.am for c++-programs</dt>
+    <dd>
+      <ol>
+        <li>CXXFLAGS = -DLinux -Wall -ansi -pedantic</li>
+        <li>#CXXFLAGS = -DLinux -Wall -ansi -pedantic -g</li>
+        <li>#CXXFLAGS = -DLinux -Wall -ansi -pedantic -O3</li>
+        <li>#CXXFLAGS = -DLinux -Wall -ansi -pedantic -g -pg</li>
+      </ol>
+    </dd>
+  <dt>In a Makefile.am for c-programs</dt>
+    <dd>
+      <ol>
+        <li>CFLAGS = -DLinux -Wall -ansi -pedantic</li>
+        <li>#CFLAGS = -DLinux -Wall -ansi -pedantic -g</li>
+        <li>#CFLAGS = -DLinux -Wall -ansi -pedantic -O3</li>
+        <li>#CFLAGS = -DLinux -Wall -ansi -pedantic -g -pg</li>
+      </ol>
+    </dd>
+</dl>
+</p>
+<p>
+So, if you want to add debug infos,
+uncomment line 2 after having commented line 1.
+If you want to add debug and profiling infos,
+uncomment line 4 after having commented line 1.
+And if you want to use optimized code, 
+uncomment line 3 after having commented line 1.
+</p>
+<h3>
+  <strong>(4.15) <a name="sh415">
+    What if I want to import my newly generated project 
+    into a cvs or subversion repository or to use
+    wildcards to commit and/or add files?
+  </a></strong>
+</h3>
+<p>
+If you import a more or less elaborated project into a cvs repository,
+you must pay attention not to import binary files as text and not
+to import those files, which can be derivated from other files by using
+any program. For CVS-repositories you should have a file 
+&laquo;.cvsignore&raquo; in each directory by which you can evoke cvs 
+to ignore those derivatable files. For Subversion-repositories you
+should have expanded the svn:ignore-feature by those file-names
+and/or patterns which shall be ignored. With gtgt it is not
+nescessary to do this by yourself:
+</p>
+<p>
+Beginning with release 3.0.0 gtgt offers a shell script 
+&laquo;prepClearRepCommit.sh&raquo; which realizes the following
+aspects:
+<ul>
+  <li>
+    Using the command &laquo;make distclean&raquo; all libs, 
+    object-files and applications will be deleted (because 
+    they can be regenerated by the pair &laquo;./configure make&raquo;)  
+  </li>
+  <li>
+    All files and links will be deleted which can be regenerated 
+    by calling &laquo;./reconf , autoconf, automake and ./configure&raquo;.
+  </li>
+  <li>
+    In all directories of the tarball the names of all regeneratable files
+    and links and patterns for all libraries and object-files will be inserted
+    into a file &laquo;.cvsignore&raquo;
+  </li>
+  <li>
+    In all directories which contain a subdirectory .svn (= which already
+    are managed by subversion) the content of the generated .cvsignore-file
+    will be inserted as content of the property &laquo;svn:ignore&raquo; (by 
+    using the command  &laquo;svn propset svn:ignore -F .cvsignore .;&raquo;)
+  </li>
+</ul>
+After having called &laquo;prepClearRepCommit.sh&raquo; you can therefore
+import, commit or add files with wildcards without having to reflect which
+of the files normally have to be ignored.
+</p>
+<p>
+If you have generated a tarball being cleared by
+ &laquo;prepClearRepCommit.sh&raquo;  you must type
+ <ul>
+ <li>&laquo;reconf&raquo;
+ <li>&laquo;configure&raquo;
+ <li>&laquo;make&raquo;
+ </ul>
+for getting back the erased files.
+</p>
+<h3>
+  <strong>(4.16) <a name="sh416">
+    What if I want to build a rpm-package on the base of my tarball?
+  </a></strong>
+</h3>
+<p>
+Beginning with release 2.0.0 gtgt automatically generates a specfile
+named  &laquo;prj.spec&raquo;. Using the command &laquo;rpm -bb prj.spec&raquo;
+you will get that rpm-package which contains the same files like the tarball
+generated with &laquo;make distcheck&raquo; and extracted and installed
+with the commands  &laquo;configure --prefix=/usr/local &amp;&amp; make &amp;&amp; install&raquo; 
+</p>
+<p>
+For changing the spec-file see <a href="http://www.rpm.org/">http://www.rpm.org/</a>.
+</p>
+
+<h3><strong>(5.A) <a name="c5A">What, if I need more informations?</a></strong></h3>
+<p>you can find more hints inside of the tarball.</p>
+
+<h3><strong>(5.B) <a name="c5B">What, if I want to add some remarks?</a></strong></h3>
+<p>Feel free to contact <a href="mailto:reincke@icdm.de">reincke@icdm.de</a>
+or at <a href="mailto:karsten@fodina.de">karsten@fodina.de</a>.
+you are strongly encoraged to correct, to suggest, to wish ...</p>
+<p>For general informations have a look at <a href="http://www.icdm.de/">http://www.icdm.de/</a> 
+and <a href="http://www.fodina.de/karsten/">http://www.fodina.de/karsten/</a>
+too.
+</p>
+<h3><strong>(6) <a name="c6">Thanks</a></strong></h3>
+<p>It's a great pleasure for me to thank some people:</p>
+<ul>
+  <li><a href="mailto:christian.heissing@cl-ki.uni-osnabrueck.de">
+    Christian Heissing</a> as first user and tester of the gitty-gitty-tools who
+    has good eyes for finding improvable aspects</li>
+  <li><a href="mailto:sassi@sedan.uni-osnabrueck.de">Guido Sassmannshausen</a> as first 
+    reader of the documentation who worked
+    hard to correct my english. (For any still existing fault I am
+    responsible not he !!!) </li>
+  <li><a href="http://www.amath.washington.edu/~lf/tutorials/autoconf/">
+    Eleftherios Gkioulekas</a> 
+    as developper of the autotools which have been the basis of the
+    gitty-gitty-tools.</li>
+  <li><a href="schunk@opal.biophys.uni-duesseldorf.de">
+  Ralph Schunk</a>, who has pointed to the correct use of some new libtool macros.</li>
+  <li>
+    My company <a href="http://www.icdm.de">ICDM</a>
+    which formerly has used gtgt and has evoked some improvements</li>
+</ul>
+</body>
+</html>

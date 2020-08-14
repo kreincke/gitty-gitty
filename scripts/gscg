@@ -1,0 +1,597 @@
+#!/bin/bash
+#
+# gscg: general source-code generator
+# Copyright (C) 2001-2009 karsten reincke <karsten.reincke@fodina.de>
+#  
+# This file is part of of the software-project GTGT.
+# 
+# GTGT is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# GTGT is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#  
+# file <gscg> version <#3.2.0#> of project <GTGT>
+
+VERSION="<#3.2.0#>"
+
+function toCapitalized
+{
+  local WORD=$1
+  FL=`perl -e '$STRING=$ARGV[0];$STRING=~/^(.)/;print $1;exit' $WORD`
+  FL=`echo "$FL" | tr [:lower:] [:upper:]`
+  RL=`perl -e '$STRING=$ARGV[0];$STRING=~/^(.)(.*)/;print $2;exit' $WORD`
+  echo "$FL$RL"
+}
+
+function toLower
+{
+  local VAR=`echo "$1" | tr [:upper:] [:lower:]`
+  echo $VAR
+}
+
+function toUpper
+{
+  local VAR=`echo "$1" | tr [:lower:] [:upper:]`
+  echo $VAR
+}
+
+
+#(X.A.1) declare c++-module for given classname
+function write_module_declaration_cpp
+{
+    local Class=`toCapitalized $1`
+    local class=`toLower $1` 
+    local CLASS=`toUpper $1`
+    
+    cat << EOF
+`gcng -cc ${PRJNAME} ${class}.h ${RELEASE}`   
+
+/** \file ${class}.h
+ *  \brief includable declarations of and for the class ${Class}
+ *
+ *  \author
+ */
+
+#ifndef  ${CLASS}_H
+#define  ${CLASS}_H
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+/* &&& exported preprocessor-defines &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */
+
+/* &&& class-declarations &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */
+
+namespace gtgt
+{
+
+/**
+ *  \brief for managing the content ...
+ *   
+ *  instances of the class ${Class} have the task to
+ *  hold and change the content ...
+ */
+
+class ${Class}
+{
+  /* &&& attributes &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */
+  public:
+  
+  private:
+    static int g${Class}Instances;    ///< persistent instance-counter
+    int mFlag;                        ///< private storing of set flags    
+    int mState;                       ///< private storing of set state  
+  
+  protected:
+  
+  /* &&& methods &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */
+  
+  public:
+  
+    /* :-: public constructors / init / operators :-:-:-:-:-:-:-: */
+    
+    /** 
+     *  \brief constructor for class ${Class}
+     */
+    ${Class}();                       
+    
+    /** 
+     *  \brief alternative constructor for class ${Class}
+     */   
+    ${Class}(int pFlag, int pState=1); 
+    
+    ~${Class}();                      ///< class-destructor
+        
+  
+    /* :-: public getter :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+    
+    /**
+     *  \brief shows and returns Number of still existing instances
+     */
+    int getNumberOfStillExistingInstances(bool pShow);
+
+    /* :-: public setter :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+    
+    /* :-: public others :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+    
+  private:
+    /* :-: private constructors / init / operators :-:-:-:-:-:-: */
+     ${Class}(const ${Class}& pCo);     ///< copy-constructor
+    /* :-: private getter -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+    /* :-: private setter -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+    /* :-: private others -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+      
+  protected:
+    /* :-: protected getter :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+    /* :-: protected setter :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+    /* :-: protected others :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+};
+
+}
+
+#endif
+EOF
+}
+
+#(X.A.2) define c++-module for given classname
+function write_module_definition_cpp
+{
+    local Class=`toCapitalized $1`
+    local class=`toLower $1` 
+    local CLASS=`toUpper $1`
+    
+    cat << EOF
+`gcng -cc ${PRJNAME} ${class}.cc ${RELEASE}`   
+
+/** \file ${class}.cc
+ *  \brief all definitions of and for the class ${Class}
+ *
+ *  \author
+ */
+
+#include <iostream.h>
+#include "${class}.h"
+
+/* &&& (1) local preprocessor-defines &&&&&&&&&&&&&&&&&&&&&&& */
+
+/* &&& (2) definitions of static global variables &&&&&&&&&&& */
+          // note: they mustn´t again be declared as static
+ 
+int gtgt::${Class}::g${Class}Instances=0; ///< global static counter
+
+/* &&& (3) &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */
+/* &&&     methods for class ${Class} &&& */
+
+/* --- (3.A) public ------------------------------------------ */
+
+/* :-: (3.A.1) public constructors, inits & operators -:-:-:-: */
+
+/**
+ * \brief constructor for class ${Class}
+ *  
+ *  class-constructor with automatically 
+ *  inititialization of private object-variables
+ */
+gtgt::${Class}::${Class}()
+: mFlag(0), mState(0)
+{
+  g${Class}Instances++;
+  cout << "hello while creating ";
+  cout << "the "<< g${Class}Instances << ".) object of class ${Class} \n"; 
+  cout << "val(mFlag) = "<< mFlag <<" val(mState) = " << mState << "\n";
+}
+
+/**
+ * \brief alternative constructor for class ${Class}
+ *
+ *  class-constructor with semi-automatically 
+ *  inititialization of private object-variables:
+ *
+ *  \param valflag a number for initializing private flag-variable (obligatoric)
+ *  \param valstate a number for initializing private state-variable (facultative)
+ */
+gtgt::${Class}::${Class}(int valflag, int valstate)
+{
+  mFlag=valflag;
+  mState=valstate;
+    
+  g${Class}Instances++;
+  cout << "hello while creating ";
+  cout << "the "<< g${Class}Instances << ".) object of class ${Class} \n"; 
+  cout << "val(flag) = "<< mFlag <<" val(state) = " << mState << "\n";
+}
+
+/**
+ * \brief class-destructor
+ *
+ *  class-destructor which gets no parameters and returns nothing
+ */
+gtgt::${Class}::~${Class}()
+{
+  cout << "deleting "<<g${Class}Instances <<". object of class ${Class}\n";
+  g${Class}Instances--;
+}
+
+/* :-: (3.A.2) public getter -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+
+/**
+ *  \brief shows and returns Number of still existing instances
+ * 
+ *  shows the number of still existing instances onto cout
+ *  if whished returns that number too
+ *
+ *  \param show true, if number of instances onto cout
+ *  \return number of still existing class instances 
+ */
+int gtgt::${Class}::getNumberOfStillExistingInstances(bool show)
+{
+  if (show)
+    cout << "there still exist " 
+          << g${Class}Instances
+            <<" instances of class ${Class}";
+  return g${Class}Instances;
+}
+/* :-: (3.A.3) public setter -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+/* :-: (3.A.4) public others -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+
+/* --- (3.B) - private ---------------------------------------- */
+/* :-: (3.B.1) private constructors, inits & operators -:-:-:-: */
+
+/**
+ *  \brief copy-constructor
+ *
+ *  class copy-constructor with automatical initialization
+ *
+ *  \param co constant reference onto copyable object
+ *  \return new object with duplicated content
+ */
+gtgt::${Class}::${Class}(const ${Class}& co)
+: mFlag(co.mFlag), mState(co.mState)
+{ 
+  cout << "calling copy-constructor\n";
+}
+
+
+/* :-: (3.B.2) private getter -:-:-:-:-:-:-:-:-:-::-:-:-:-:-:-: */
+/* :-: (3.B.3) private setter :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+/* :-: (3.B.4) private others :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+
+/* --- (3.C) - protected -------------------------------------- */
+/* :-: (3.C.1) protected getter :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+/* :-: (3.C.2) protected setter :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+/* :-: (3.C.3) protected others :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+
+/* &&& (4) &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */
+/* &&&     methods for class &&& */
+
+/* --- (4.A) - public ----------------------------------------- */
+/* :-: (4.A.1) public constructors, inits & operators :-:-:-:-: */
+/* :-: (4.A.2) public getter -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+/* :-: (4.A.3) public setter -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+/* :-: (4.A.4) public others -:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+
+/* --- (4.B) - private ---------------------------------------- */
+/* :-: (4.B.1) private constructors, inits & operators -:-:-:-: */
+/* :-: (4.B.2) private getter -:-:-:-:-:-:-:-:-:-::-:-:-:-:-:-: */
+/* :-: (4.B.3) private setter :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+/* :-: (4.B.4) private others :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+
+/* --- (4.C) - protected -------------------------------------- */
+/* :-: (4.C.1) protected getter :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+/* :-: (4.C.2) protected setter :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+/* :-: (4.C.3) protected others :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: */
+  
+EOF
+
+}
+
+#(X.B.1) declare c-module for given classname
+function write_module_declaration_c
+{
+
+    local Module=`toCapitalized $1`
+    local module=`toLower $1` 
+    local MODULE=`toUpper $1`
+
+    cat << EOF
+`gcng -c ${PRJNAME} ${module}.h  ${RELEASE}`   
+
+/** \file ${module}.h
+ *  \brief includable declarations of and for the module ${Module}
+ *
+ *  \author
+ *
+ */
+
+#ifndef  ${MODULE}_h
+#define  ${MODULE}_h ///< marks that ${MODULE}.h has already been included
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+/* &&& (1) define exported preprocessor-macros &&&&&&&&&&&&&&&&&&&&&&& */
+ 
+/* &&& (2) define exported type-defs &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */
+
+/* &&& (3) declare externally visible variables &&&&&&&&&&&&&&&&&&&&&& */
+
+    /* in the header-file they must be declared(!) as extern 
+     * but in the c-file normally defined. therefore we use
+     * a macro for distinguishing and marking the differences */
+
+#ifndef DEFINING_${MODULE}
+/** 
+ *  \brief for storing the number of init-calls - delete-calls
+ */
+extern int ${module}_var;
+#endif
+
+/* &&& (4) declare exported functions  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */
+
+/**
+ *  \brief initialization (could malloc object-memory-blocks)
+ */
+int init_${module}_object(void);
+
+/**
+ *  \brief delete (could free malloced object-memory-blocks)
+ */
+void delete_${module}_object(int obj);
+
+#endif
+
+EOF
+
+} 
+
+#(X.B.2) define c-module for given classname
+function write_module_definition_c
+{
+    local Module=`toCapitalized $1`
+    local module=`toLower $1` 
+    local MODULE=`toUpper $1`
+
+     cat << EOF
+`gcng -c ${PRJNAME} ${module}.c ${RELEASE}`   
+
+/** \file ${module}.c
+ *  \brief all definitions of and for the module ${Module}
+ *
+ *  \author
+ */
+
+ 
+/* (1.A) beware of including the extern-declarations of global 
+ * variables which will be defined inside of this module-definition */
+
+/** \def DEFINING_${MODULE}
+ *  if defined external-variable-declarations in ${module}.h are ignored
+ */
+  
+#define DEFINING_${MODULE}
+
+#include <stdlib.h>
+#include <stdio.h>
+#include "${module}.h"
+
+/* &&& (1) define local preprocessor-macros &&&&&&&&&&&&&&&&&&&&&&&&&& */
+
+/* &&& (2) define local type-defs &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */
+
+/* &&& (3.A) define general visible variables &&&&&&&&&&&&&&&&&&&&&&&& */
+
+/** 
+ *  \brief for counting of still malloced memory blocks (for example)
+ */ 
+int ${module}_var=0;
+
+/* &&& (3.B) define locally globally visible variable &&&&&&&&&&&&&&&& */
+static int ${module}_instances=0; /**< internal module-counter */
+
+/* &&& (4.A) exported function-declarations -> ${MODULE}.h &&&&&&&&&&&
+   &&& (4.B) declare locally visible functions &&&&&&&&&&&&&&&&&&&&&&& */
+
+
+/* &&& (5) define exported functions [ -> ${MODULE}.h / (4.A) ] &&&&&& */
+
+/**
+ *  \brief initialization (could malloc object-memory-blocks)
+ * 
+ *  for initializing where for example memory could be malloced
+ */ 
+int init_${module}_object(void)
+{
+  ${module}_instances++;
+  printf("hello while initializing the %d. open ${Module}_object\n",${module}_instances);
+  return ${module}_instances;
+}
+
+/**
+ *  \brief delete (could free malloced object-memory-blocks)
+ * 
+ *  for deleting of malloced memory (for example)
+ *
+ *  \param obj id of the module
+ *  \return nothing
+ */ 
+void delete_${module}_object(int obj)
+{
+  ${module}_instances--;
+  printf("after deleting ${Module}_object <%d>"
+         " are still open %d objects\n",obj,${module}_instances);
+}
+
+/* &&& (6) define local subfunctions  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */
+
+EOF
+
+}
+
+function version
+{
+    cat << EOF
+
+gscg $VERSION - The general source-code generator
+generates a default c- or c++-module
+
+Copyright (C) 2000,2001,2002,2003 karsten reincke <reincke@fodina.de>
+
+This file is part of of the software-project GTGT.
+
+GTGT is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+GTGT is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software 
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+EOF
+}
+
+function usage
+{
+cat << EOF
+
+general source-code generator
+Usage: gscg <-c|-cpp|-h|-v> [-i|-s|-is] [MODULE] [PROJECT] [RELEASE]
+
+ -c             module will be written in C
+ -cpp           module will be written in C++
+ --help -h      this screen
+ --version -v   version and license
+ 
+ -i             echo include-code for the module
+ -s             echo source-code for the module
+ -is            write include- + source-code as file
+
+MODULE          should be a short module-identifier without
+                brackets, underlines, points etc. etc.
+
+PROJECT         should be a short project-identifier without
+                brackets, underlines, points etc. etc.
+
+RELEASE         release-number
+
+Bug reports to: reincke@fodina.de
+
+EOF
+}
+
+MODNAME="MODEXAMPLE"
+HEADER_EXT=".h"
+SOURCE_EXT=".cc"
+LANGUAGE="cpp"
+ACTION="es"
+PRJNAME="PRJEXAMPLE"
+RELEASE="0.1"
+
+# this is only for asserting the the gcng.conf exists
+# and can be called inside of the catted HERE-Files
+# without disturbing the io-handling of the main-shell
+
+if [ $# = 0 ];
+then
+    usage
+    exit
+fi
+
+case $1 in
+  "-c")
+     LANGUAGE="c"
+     SOURCE_EXT=".c"
+     ;;
+  "-cpp")
+     LANGUAGE="cpp"
+     SOURCE_EXT=".cc"        
+     ;;
+  "-v")
+     version
+     exit
+     ;;
+  "--version")
+     version
+     exit
+     ;;
+  *)
+     usage
+     exit
+     ;;
+esac
+
+if [ ! -f gcng.conf ]
+then
+  echo "please call gcng.conf for setting up"
+  echo "your developper-configuration!"
+  exit 0
+fi
+    
+if [ $# -gt 1 ];
+then
+   case $2 in
+     "-s")
+         ACTION="es"
+         ;;
+     "-i")
+         ACTION="ei"
+         ;;
+     "-is")
+         ACTION="wis"
+         ;;
+     *)
+         MODNAME=$2
+         ;;
+   esac
+        
+    if [ $# -gt 2 ]
+    then
+        MODNAME=$3
+        if [ $# -gt 3 ]
+        then
+            PRJNAME=$4
+            if [ $# -gt 4 ]
+            then            
+                RELEASE=$5
+            fi
+        fi
+    fi  
+fi
+
+MODFILENAME=`toLower $MODNAME`
+
+case $ACTION in
+"es")
+    write_module_definition_${LANGUAGE} ${MODNAME}    
+    ;;
+"ei")
+    write_module_declaration_${LANGUAGE} ${MODNAME}  
+    ;;
+"wis")
+
+
+    cat > ${MODFILENAME}${SOURCE_EXT} << EOF
+`write_module_definition_${LANGUAGE} ${MODNAME}`
+EOF
+
+    cat > ${MODFILENAME}.h << EOF
+`write_module_declaration_${LANGUAGE} ${MODNAME}`
+EOF
+
+    ;;
+    
+esac
+
+exit
