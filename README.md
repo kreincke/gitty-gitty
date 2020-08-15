@@ -1,2 +1,2 @@
-# gnu-tgt
+# GnuTGT
 GNU Template Generation Tools
