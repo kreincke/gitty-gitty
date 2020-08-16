@@ -155,7 +155,7 @@ function write_module_definition_cpp
  *  \author
  */
 
-#include <iostream.h>
+#include <iostream>
 #include "${class}.h"
 
 /* &&& (1) local preprocessor-defines &&&&&&&&&&&&&&&&&&&&&&& */
@@ -182,9 +182,9 @@ gtgt::${Class}::${Class}()
 : mFlag(0), mState(0)
 {
   g${Class}Instances++;
-  cout << "hello while creating ";
-  cout << "the "<< g${Class}Instances << ".) object of class ${Class} \n"; 
-  cout << "val(mFlag) = "<< mFlag <<" val(mState) = " << mState << "\n";
+  std::cout << "hello while creating ";
+  std::cout << "the "<< g${Class}Instances << ".) object of class ${Class} \n"; 
+  std::cout << "val(mFlag) = "<< mFlag <<" val(mState) = " << mState << "\n";
 }
 
 /**
@@ -202,9 +202,9 @@ gtgt::${Class}::${Class}(int valflag, int valstate)
   mState=valstate;
     
   g${Class}Instances++;
-  cout << "hello while creating ";
-  cout << "the "<< g${Class}Instances << ".) object of class ${Class} \n"; 
-  cout << "val(flag) = "<< mFlag <<" val(state) = " << mState << "\n";
+  std::cout << "hello while creating ";
+  std::cout << "the "<< g${Class}Instances << ".) object of class ${Class} \n"; 
+  std::cout << "val(flag) = "<< mFlag <<" val(state) = " << mState << "\n";
 }
 
 /**
@@ -214,7 +214,7 @@ gtgt::${Class}::${Class}(int valflag, int valstate)
  */
 gtgt::${Class}::~${Class}()
 {
-  cout << "deleting "<<g${Class}Instances <<". object of class ${Class}\n";
+  std::cout << "deleting "<<g${Class}Instances <<". object of class ${Class}\n";
   g${Class}Instances--;
 }
 
@@ -223,16 +223,16 @@ gtgt::${Class}::~${Class}()
 /**
  *  \brief shows and returns Number of still existing instances
  * 
- *  shows the number of still existing instances onto cout
+ *  shows the number of still existing instances onto std::cout
  *  if whished returns that number too
  *
- *  \param show true, if number of instances onto cout
+ *  \param show true, if number of instances onto std::cout
  *  \return number of still existing class instances 
  */
 int gtgt::${Class}::getNumberOfStillExistingInstances(bool show)
 {
   if (show)
-    cout << "there still exist " 
+    std::cout << "there still exist " 
           << g${Class}Instances
             <<" instances of class ${Class}";
   return g${Class}Instances;
@@ -254,7 +254,7 @@ int gtgt::${Class}::getNumberOfStillExistingInstances(bool show)
 gtgt::${Class}::${Class}(const ${Class}& co)
 : mFlag(co.mFlag), mState(co.mState)
 { 
-  cout << "calling copy-constructor\n";
+  std::cout << "calling copy-constructor\n";
 }
 
 

@@ -1,9 +1,9 @@
 #!/bin/bash
 #
 # gptg: general-project-template-generator
-# Copyright (C) 2001-2009 karsten reincke <karsten.reincke@fodina.de>
-# 
-# a script to generate 
+# Copyright (C) 2001 - 2020 Karsten Reincke <k.reincke@fodina.de>
+#
+# a script to generate
 # (a) the file and directory-structure
 #     which is nescessary to use the gnu automake / autoconfigure tools
 # while
@@ -12,17 +12,17 @@
 #     is already compilable.
 #
 # This file is part of of the software-project GTGT.
-# 
+#
 # GTGT is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # GTGT is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-#  
+#
 # file <gptg> version <#3.2.0#> of project <GTGT>
 
 VERSION="<#3.2.0#>"
@@ -69,16 +69,16 @@ OPTIONS  :-
 PROJECT  :-         projectname [myproject]
 RELEASE  :-         start-release-number [0]
 REVISION :-         start-release-branch-number [1]
-     
+
 repsect the following conditions ...
 (a) PROJECT should be a small identifier without blanks or any other seperators.
 (b) use numbers (integers) for RELEASE and REVISION think release-number as
-    main-version-number and revision-number as programming-step-number 
-    or simply follow cvs-terminology. do not use rational numbers 
+    main-version-number and revision-number as programming-step-number
+    or simply follow cvs-terminology. do not use rational numbers
     (whished number "1.4" must be: "release 1 revision 4")
 ... or your work might fail. there is (still) no input-check.
 
-Bug reports: karsten@reincke.org
+Bug reports: k.reincke@fodina.de
 EOF
 
 }
@@ -89,7 +89,7 @@ function version
 gptg $VERSION - general packet-template generator -
 generates directory tree for new software package
 
-Copyright (C) 2000,2001,2002,2003 karsten reincke <reincke@fodina.de>
+Copyright (C) 2000 - 2020 Karsten Reincke <k.reincke@fodina.de>
 
 This file is part of of the software-project GTGT.
 
@@ -97,7 +97,7 @@ GTGT is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
 (at your option) any later version.
- 
+
 GTGT is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -110,7 +110,7 @@ EOF
 function get_copyright_data
 {
   gcng -ecl
-  
+
   AUT_NAME="$(cat gcng.conf | head -1 | tail -1)"
   AUT_EMAIL="$(cat gcng.conf | head -2 | tail -1)"
   AUT_YEAR="$(cat gcng.conf | head -3 | tail -1)"
@@ -127,13 +127,13 @@ function get_copyright_data
 # =========================================
 
 # ---------------------------------------------------
-# This function creates a template NEWS file in the 
+# This function creates a template NEWS file in the
 # present working directory.
 # ---------------------------------------------------
 
 function make_NEWS
 {
-  
+
  cat >> NEWS <<EOF
 Project ${PROJECT} / release <#${RELEASE}#> -- History of visible changes.
 `gcng -ecl ${PROJECT}`
@@ -161,7 +161,7 @@ Welcome to the project ${PROJECT} / release <#${RELEASE}#>
 -------------------------------------------------------
 `gcng -ech ${PROJECT}`
 Please see the file COPYING for details.
-------------------------------------------------------- 
+-------------------------------------------------------
 For documentation, please see the files in the doc subdirectory.
 For building and installation instructions please see the INSTALL file.
 EOF
@@ -180,7 +180,7 @@ Welcome to the project ${PROJECT} / release <#${RELEASE}#>
 -------------------------------------------------------
 `gcng -ech ${PROJECT}`
 Please see the file COPYING for details.
-------------------------------------------------------- 
+-------------------------------------------------------
 
 Authors of the project ${PROJECT}.
 (See also the files THANKS and ChangeLog.)
@@ -203,12 +203,12 @@ Welcome to the project ${PROJECT} / release <#${RELEASE}#>
 -------------------------------------------------------
 `gcng -ech ${PROJECT}`
 Please see the file COPYING for details.
-------------------------------------------------------- 
+-------------------------------------------------------
 
 ${PROJECT} THANKS file
 
 The project ${PROJECT} has originally been initiated by ${AUT_NAME}.
-Many people have further contributed to ${PROJECT} by reporting problems, 
+Many people have further contributed to ${PROJECT} by reporting problems,
 suggesting various improvements, or submitting actual code. Here is
 a list of these people. Help me keep it complete and exempt of errors.
 EOF
@@ -217,7 +217,7 @@ EOF
 
 function make_ChangeLog
 {
- 
+
  cat >> ChangeLog <<EOF
 Project ${PROJECT} / release <#${RELEASE}#> -- ChangeLog
 `gcng -ecl ${PROJECT}`
@@ -296,14 +296,14 @@ bin_SCRIPTS = ${project}.sh
 EXTRA_DIST = ${project}.sh
 
 ${project}.sh:
-	chmod ugo+x ${project}.sh  
+	chmod ugo+x ${project}.sh
 EOF
 }
 
 function make_bashscript
 {
     cat >> ${project}.sh << EOF
-`gcng -sh ${PROJECT} ${project}.sh ${RELEASE}`    
+`gcng -sh ${PROJECT} ${project}.sh ${RELEASE}`
 
 echo "hello from ${project}.sh release <#${RELEASE}#>"
 
@@ -323,11 +323,11 @@ function make_m4_makefile
 m4datadir = \$(datadir)/aclocal
 
 # List your m4 macros here
-m4macros = 
+m4macros =
 
 # The following is boilerplate
-m4data_DATA = \$(m4macros) 
-EXTRA_DIST = \$(m4data_DATA) 
+m4data_DATA = \$(m4macros)
+EXTRA_DIST = \$(m4data_DATA)
 
 EOF
 }
@@ -395,10 +395,10 @@ EOF
 function make_toplevel_makefile_cpp
 {
     echo "updating Makefile.am at toplevel (mode cpp)"
-    
+
     cat >> Makefile.am <<EOF
 EXTRA_DIST = reconf configure ${ADD_TOPLEVEL_DIST}
-SUBDIRS = m4 scripts doc lib src 
+SUBDIRS = m4 scripts doc lib src
 EOF
 }
 
@@ -427,7 +427,7 @@ AM_CXXFLAGS = -DLinux -Wall -ansi -pedantic
 #AM_CXXFLAGS = -DLinux -Wall -ansi -pedantic -g -pg
 
 SUBDIRS=daughter-module
-    
+
 INCLUDES = -I\$(top_srcdir)/lib -I\$(top_srcdir)/src/daughter-module
 
 bin_PROGRAMS = ${project}
@@ -436,7 +436,7 @@ ${project}_SOURCES = \\
 ${project}_DEPENDENCIES = \\
     ../lib/${librname}.cc ../lib/${librname}.h \\
     daughter-module/${damoname}.cc daughter-module/${damoname}.h
-${project}_LDADD = daughter-module/${damoname}.o -l${librname} 
+${project}_LDADD = daughter-module/${damoname}.o -l${librname}
 ${project}_LDFLAGS = -L\$(top_builddir)/lib -L\$(top_builddir)/src/daughter-module
 
 EOF
@@ -447,7 +447,7 @@ EOF
 function make_simolevel_main_cpp
 {
   echo "creating main-program (mode cpp)"
-        
+
     cat > ${project}.cc <<EOF
 `gcng -cc ${PROJECT} ${project}.cc ${RELEASE}`
 
@@ -475,9 +475,9 @@ int main (int argn, char * argv[])
   ${Librname} libraryModuleObject1;
   ${Librname} libraryModuleObject2(1,2);
 
-  cout << "hello from main of package ${PROJECT}" << endl;
+ std::cout << "hello from main of package ${PROJECT}" << endl;
   return 0;
-} 
+}
 
 EOF
 }
@@ -486,9 +486,9 @@ EOF
 function make_simolevel_module_cpp
 {
     echo "creating sister-module (mode cpp)"
-    
+
 # (1.D.3.1) fill header-file
-    
+
     cat >> ${simoname}.h << EOF
 `gscg -cpp -i ${Simoname} ${PROJECT} ${RELEASE}`
 
@@ -513,7 +513,7 @@ AM_CXXFLAGS = -DLinux -Wall -ansi -pedantic
 #AM_CXXFLAGS = -DLinux -Wall -ansi -pedantic -g
 #AM_CXXFLAGS = -DLinux -Wall -ansi -pedantic -O3
 #AM_CXXFLAGS = -DLinux -Wall -ansi -pedantic -g -pg
-    
+
 noinst_LIBRARIES =lib${damoname}.a
 lib${damoname}_a_SOURCES = \\
     ${damoname}.cc ${damoname}.h
@@ -526,9 +526,9 @@ EOF
 function make_damolevel_module_cpp
 {
     echo "creating daughter-module (mode cpp)"
-    
+
 # (1.D.5.1) fill header-file
-    
+
     cat >> ${damoname}.h << EOF
 `gscg -cpp -i ${Damoname} ${PROJECT} ${RELEASE}`
 
@@ -548,7 +548,7 @@ function make_liblevel_makefile_cpp
     echo "updating lib-Makefile.am for directory lib (mode cpp)"
 
     cat >> Makefile.am << EOF
-#EXTRA_DIST 
+#EXTRA_DIST
 #SUBDIRS
 
 AM_CXXFLAGS = -DLinux -Wall -ansi -pedantic
@@ -575,9 +575,9 @@ EOF
 function make_liblevel_statlib_cpp
 {
     echo "creating static-library (mode cpp)"
-    
+
 # (1.E.2.a.I) fill header-file
-    
+
     cat > ${librname}.h << EOF
 `gscg -cpp -i ${Librname}  ${PROJECT} ${RELEASE}`
 EOF
@@ -594,7 +594,7 @@ EOF
 function make_reconf_cpp
 {
     echo "creating reconfiguration-file"
-    
+
      cat >> reconf <<EOF
 #!/bin/sh
 
@@ -623,7 +623,7 @@ DELETE_FILES=\
    aclocal.m4 \
    configure \
    \${DELCONF_FILES}"
-for DF in \${DELETE_FILES}; 
+for DF in \${DELETE_FILES};
 do
   echo "deleting \${DF}"
   find . -name \${DF} -exec rm \{\} \;
@@ -635,7 +635,7 @@ echo "- libtoolize"
 libtoolize
 
 echo "- aclocal."
-aclocal \$ACLOCAL_PATH 
+aclocal \$ACLOCAL_PATH
 echo "- autoconf."
 autoconf
 echo "- autoheader."
@@ -715,7 +715,7 @@ function make_toplevel_makefile_c
     echo "updating Makefile.am at toplevel (mode c)"
     cat >> Makefile.am <<EOF
 EXTRA_DIST = reconf configure ${ADD_TOPLEVEL_DIST}
-SUBDIRS = m4 scripts doc lib src 
+SUBDIRS = m4 scripts doc lib src
 EOF
 }
 
@@ -734,7 +734,7 @@ EOF
 function make_simolevel_makefile_c
 {
     echo "updating Makefile.am for directory src (mode c)"
-    
+
     cat >> Makefile.am <<EOF
 
 AM_CFLAGS = -DLinux -Wall -ansi -pedantic
@@ -752,7 +752,7 @@ ${project}_SOURCES = \\
 ${project}_DEPENDENCIES = \\
     ../lib/${librname}.c ../lib/${librname}.h \\
     daughter-module/${damoname}.c daughter-module/${damoname}.h
-${project}_LDADD = daughter-module/${damoname}.o -l${librname} 
+${project}_LDADD = daughter-module/${damoname}.o -l${librname}
 ${project}_LDFLAGS = -L\$(top_builddir)/lib -L\$(top_builddir)/src/daughter-module
 
 EOF
@@ -762,7 +762,7 @@ EOF
 function make_simolevel_main_c
 {
     echo "creating main-program in directory src (mode c)"
-  
+
     cat >> ${project}.c <<EOF
 `gcng -c ${PROJECT} ${project}.c ${RELEASE}`
 
@@ -784,18 +784,18 @@ int main (int argn, char * argv[])
         daughter_module_object_2,
         library_module_object_1,
         library_module_object_2;
-    
-    sister_module_object_1=init_${simoname}_object(); 
-    sister_module_object_2=init_${simoname}_object(); 
 
-    daughter_module_object_1=init_${damoname}_object(); 
-    daughter_module_object_2=init_${damoname}_object(); 
+    sister_module_object_1=init_${simoname}_object();
+    sister_module_object_2=init_${simoname}_object();
 
-    library_module_object_1=init_${librname}_object(); 
-    library_module_object_2=init_${librname}_object(); 
-           
+    daughter_module_object_1=init_${damoname}_object();
+    daughter_module_object_2=init_${damoname}_object();
+
+    library_module_object_1=init_${librname}_object();
+    library_module_object_2=init_${librname}_object();
+
     printf("hello from main of package ${PROJECT}\n");
-    
+
     delete_${simoname}_object(sister_module_object_1);
     delete_${simoname}_object(sister_module_object_2);
 
@@ -806,7 +806,7 @@ int main (int argn, char * argv[])
     delete_${librname}_object(library_module_object_2);
 
     return 0;
-} 
+}
 EOF
 }
 
@@ -814,9 +814,9 @@ EOF
 function make_simolevel_module_c
 {
     echo "creating sister-module (mode cpp)"
-    
+
 # (2.D.3.1) fill header-file
-    
+
     cat >> ${simoname}.h << EOF
 `gscg -c -i ${Simoname} ${PROJECT} ${RELEASE}`
 
@@ -843,7 +843,7 @@ AM_CFLAGS = -DLinux -Wall -ansi -pedantic
 #AM_CFLAGS = -DLinux -Wall -ansi -pedantic -g
 #AM_CFLAGS = -DLinux -Wall -ansi -pedantic -O3
 #AM_CFLAGS = -DLinux -Wall -ansi -pedantic -g -pg
-    
+
 noinst_LIBRARIES =lib${damoname}.a
 lib${damoname}_a_SOURCES = \\
     ${damoname}.c ${damoname}.h
@@ -856,9 +856,9 @@ EOF
 function make_damolevel_module_c
 {
     echo "creating daughter-module (mode cpp)"
-    
+
 # (2.D.5.1) fill header-file
-    
+
     cat >> ${damoname}.h << EOF
 `gscg -c -i ${Damoname} ${PROJECT} ${RELEASE}`
 
@@ -877,7 +877,7 @@ function make_liblevel_makefile_c
    echo "updating lib-Makefile.am for directory lib (mode c)"
 
     cat >> Makefile.am << EOF
-#EXTRA_DIST 
+#EXTRA_DIST
 #SUBDIRS
 
 AM_CFLAGS = -DLinux -Wall -ansi -pedantic
@@ -904,9 +904,9 @@ EOF
 function make_liblevel_statlib_c
 {
     echo "creating static-library (mode c)"
-    
+
 # (2.E.2.a.I) fill header-file
-    
+
     cat > ${librname}.h << EOF
 `gscg -c -i ${Librname}  ${PROJECT} ${RELEASE}`
 EOF
@@ -938,7 +938,7 @@ DELETE_FILES=\
    aclocal.m4 \
    configure \
    \${DELCONF_FILES}"
-for DF in \${DELETE_FILES}; 
+for DF in \${DELETE_FILES};
 do
   echo "deleting \${DF}"
   find . -name \${DF} -exec rm \{\} \;
@@ -947,7 +947,7 @@ done
 find . -type l -exec rm \{\} \;
 
 echo "- aclocal."
-aclocal  
+aclocal
 
 echo "- libtoolize"
 libtoolize
@@ -984,25 +984,25 @@ function integrate_doxygen
   local DOUTPDIR="doc\/doxygen"
   local DTMPFILE=$project.tmp
 
-  
+
   local SP=sed.proj
   local SR=sed.rele
   local SO=sed.outp
   local SI=sed.inpu
   local SF=sed.fipa
   local SD=sed.recu
-   
+
   echo "writing default doxgen-config-file named $DOXYFILE"
   doxygen -g $DOXYFILE &>/dev/null
-  
+
   echo "integrating project-specific file- and name-structure into file $DOXYFILE"
   echo "/^PROJECT_NAME / s/^.*/PROJECT_NAME = ${PROJECT}/" > $SP
   echo "/^PROJECT_NUMBER / s/^.*/PROJECT_NUMBER = ${RELEASE}/" > $SR
   echo "/^OUTPUT_DIRECTORY / s/^.*/OUTPUT_DIRECTORY = ${DOUTPDIR}/" > $SO
   echo "/^INPUT / s/^.*/INPUT = src lib /" > $SI
-  echo "/^FILE_PATTERNS / s/^.*/FILE_PATTERNS = *.cc *.h *c /" > $SF  
-  echo "/^RECURSIVE / s/^.*/RECURSIVE = YES /" > $SD 
-  
+  echo "/^FILE_PATTERNS / s/^.*/FILE_PATTERNS = *.cc *.h *c /" > $SF
+  echo "/^RECURSIVE / s/^.*/RECURSIVE = YES /" > $SD
+
   sed -f $SP -f $SR -f $SO -f $SI -f $SF -f $SD $DOXYFILE > $DTMPFILE
   rm $SP
   rm $SR
@@ -1011,10 +1011,10 @@ function integrate_doxygen
   rm $SF
   rm $SD
   mv $DTMPFILE $DOXYFILE
- 
+
   echo calling doxgen
   doxygen $DOXYFILE
-  
+
 }
 
 function write_prj_spec
@@ -1116,10 +1116,10 @@ ${PROJECT}-Line-2:
 # (4) In the prep-section, the focus is entirely on directing RPM through
 #     the process of preparing the software for building
 #   	(= unpack / collect / checkout all the needed sources).
-#     The working directory will implicitely changed onto 
+#     The working directory will implicitely changed onto
 #     /usr/src/packages/BUILD by the rpm command itself.
 #     If you unpack / collect / checkout anything it is positioned there.
-#     You can denote the directory where you've really started the rpm 
+#     You can denote the directory where you've really started the rpm
 #     by the variable OLDPWD
 ############################################################################
 %prep
@@ -1180,7 +1180,7 @@ EOF
 function write_prepClearRepCommit
 {
     echo "creating prepClearRepCommit-file"
-    
+
      cat >> $PREPCLEARREPCOMMITFILE <<EOF
 #!/bin/sh
 
@@ -1200,7 +1200,7 @@ DELETE_FILES=\
    aclocal.m4 \
    configure \
    \${DELCONF_FILES}"
-for DF in \${DELETE_FILES}; 
+for DF in \${DELETE_FILES};
 do
   echo "deleting \${DF}"
   find . -name \${DF} -exec rm \{\} \;
@@ -1229,7 +1229,7 @@ fi
   echo "*.lo" >> .cvsignore
   echo "*.o" >> .cvsignore
   echo ".libs" >> .cvsignore
-  echo ".deps" >> .cvsignore 
+  echo ".deps" >> .cvsignore
 
   if [ -e .svn ];
   then
@@ -1239,31 +1239,31 @@ fi
 
 done
 
-echo "COPYING" > .cvsignore 
-echo "INSTALL" >> .cvsignore 
-echo "config.guess" >> .cvsignore 
-echo "config.sub" >> .cvsignore 
-echo "install-sh" >> .cvsignore 
-echo "ltmain.sh" >> .cvsignore 
-echo "ltconfig" >> .cvsignore 
-echo "missing" >> .cvsignore 
-echo "mkinstalldirs" >> .cvsignore 
-echo "aclocal.m4" >> .cvsignore 
-echo "configure" >> .cvsignore 
-echo "Makefile.in" >> .cvsignore 
-echo "Makefile" >> .cvsignore 
-echo "stamp-h" >> .cvsignore 
-echo "config.h" >> .cvsignore 
-echo "config.log" >> .cvsignore 
-echo "config.status" >> .cvsignore 
-echo "libtool" >> .cvsignore 
+echo "COPYING" > .cvsignore
+echo "INSTALL" >> .cvsignore
+echo "config.guess" >> .cvsignore
+echo "config.sub" >> .cvsignore
+echo "install-sh" >> .cvsignore
+echo "ltmain.sh" >> .cvsignore
+echo "ltconfig" >> .cvsignore
+echo "missing" >> .cvsignore
+echo "mkinstalldirs" >> .cvsignore
+echo "aclocal.m4" >> .cvsignore
+echo "configure" >> .cvsignore
+echo "Makefile.in" >> .cvsignore
+echo "Makefile" >> .cvsignore
+echo "stamp-h" >> .cvsignore
+echo "config.h" >> .cvsignore
+echo "config.log" >> .cvsignore
+echo "config.status" >> .cvsignore
+echo "libtool" >> .cvsignore
 if [ -e .svn ];
 then
   svn propset svn:ignore -F .cvsignore .;
 fi
 
 EOF
- chmod u+x  $PREPCLEARREPCOMMITFILE 
+ chmod u+x  $PREPCLEARREPCOMMITFILE
 }
 
 function write_chrefile
@@ -1273,7 +1273,7 @@ function write_chrefile
 #!/bin/bash
 
 #
-# Copyright (C) 2000 karsten reincke <karsten.reincke@fodina.de>
+# Copyright (C) 2000 - 2020 Karsten Reincke <k.reincke@fodina.de>
 # This file is part of of the software-project ${PROJECT}.
 #
 # ${PROJECT} is free software; you can redistribute it and/or modify
@@ -1284,11 +1284,11 @@ function write_chrefile
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software 
+# along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-#  
+#
 # file <change-release> version <#3.2.0#> of project <GTGT>
 
 #---------------------------------------------------------------------------------
@@ -1321,12 +1321,12 @@ OLDREVISION=${BRAN}   	# defines a more important revision of a release
 OLDSTEP=${STEP}       	# defines a lowlevel revesion of a release
       	      	      	# (doesn't concern libraries
 OLDLIBAGE=0   	      	# indicates how many of the elder
-      	      	      	# library-releases offer the same interface 
+      	      	      	# library-releases offer the same interface
 
 NEWRELEASE=${RELE}
 NEWREVISION=${INCRBRAN}
 NEWSTEP=${STEP}
-NEWLIBAGE=0   	      	
+NEWLIBAGE=0
 
 #---------------------------------------------------------------------------------
 # change the following 6 variables only if you know the revision system of libtool
@@ -1356,11 +1356,11 @@ then
 fi
 
 echo $CFP | tr ' ' '\n'> xyz.tmp
-cat xyz.tmp | while read mt; do 
+cat xyz.tmp | while read mt; do
   echo "changing files of mimetyp $mt";
   find . -type f -name "$mt" |
   while read file; do
-    echo "updating file <$file>" 
+    echo "updating file <$file>"
     cat $file | sed "/<#$OLDVERSION#>/s/$OLDVERSION/$NEWVERSION/g" > xxx.tmp
     mv xxx.tmp $file
   done
@@ -1378,7 +1378,7 @@ find . -type f -name "Makefile.am" |
 while read file; do
   echo "setting $OLDVERSION onto $NEWVERSION in libsection of $file"
   mv $file $file.sav
-  sed -e "/info $OLDLIBVERSION/s/$OLDLIBVERSION/$NEWLIBVERSION/" $file.sav > $file 
+  sed -e "/info $OLDLIBVERSION/s/$OLDLIBVERSION/$NEWLIBVERSION/" $file.sav > $file
   rm $file.sav
 done
 
@@ -1386,7 +1386,7 @@ find . -type f -name "Doxyfile" |
 while read file; do
   echo "setting $OLDVERSION onto $NEWVERSION in Doxyfile"
   mv $file $file.sav
-  sed -e "/PROJECT_NUMBER = $OLDVERSION/s/$OLDVERSION/$NEWVERSION/" $file.sav > $file 
+  sed -e "/PROJECT_NUMBER = $OLDVERSION/s/$OLDVERSION/$NEWVERSION/" $file.sav > $file
   rm $file.sav
 done
 
@@ -1396,7 +1396,7 @@ while read file; do
   mv $file $file.sav
   sed -e "/define PRJ_RELEASE $OLDVERSION/s/$OLDVERSION/$NEWVERSION/" $file.sav > $file
   rm $file.sav
-done 
+done
 rm  xyz.tmp
 
 
@@ -1413,13 +1413,13 @@ chmod 775 $CHREFILE
 # FIXME: Add more documentation here
 # -------------------------------------------------------
 
-function create_toplevel_directory 
+function create_toplevel_directory
 {
     echo "Ready to create a new packet skeleton in"
     echo "`pwd`"
     echo "using the copyright"
     get_copyright_data
- 
+
     echo "package-name                    : $PROJECT"
     echo "initialization-author           : $AUT_NAME"
     echo "initialization-email            : $AUT_EMAIL"
@@ -1429,35 +1429,35 @@ function create_toplevel_directory
         echo "using the short license-version : $COMP_SHORT_COPYRIGHT_NOTE"
         echo "using the long license-version  : $COMP_LONG_COPYRIGHT_NOTE"
     fi
-     
+
     # Make the directories
     echo "project-programming language    : ${LANGUAGE}"
     echo "project-directory start-release : ${PROJECT}-${RELEASE}"
-    
+
     mkdir ${project}-${RELEASE}
- 
+
     cp gcng.conf ${project}-${RELEASE}/
- 
+
     cd ${project}-${RELEASE}
- 
+
     SDL="src src/daughter-module lib scripts doc m4"
     WORK_SDL="doc m4 scripts lib src src/daughter-module"
-    
+
     for i in $SDL
     do
-        echo "creating blank ${i}/Makefile.am"    
+        echo "creating blank ${i}/Makefile.am"
         mkdir $i
         cp gcng.conf ${i}/gcng.conf
         gcng -am ${PROJECT} ${i}/Makefile.am ${RELEASE} > ${i}/Makefile.am
     done
-    
-    
+
+
     echo "creating blank Makefile.am, configure.in and reconf"
     gcng -am ${PROJECT} Makefile.am ${RELEASE} > Makefile.am
     gcng -shS ${PROJECT} configure.in ${RELEASE} > configure.in
-    gcng -shS ${PROJECT} reconf ${RELEASE} > reconf 
+    gcng -shS ${PROJECT} reconf ${RELEASE} > reconf
     chmod u+x reconf
- 
+
 
     # Create templates for the standard information files
     echo "creating filled NEWS README AUTHORS THANKS ChangeLog"
@@ -1467,16 +1467,16 @@ function create_toplevel_directory
     make_AUTHORS
     make_THANKS
     make_ChangeLog
-    
-    
-    for i in $SDL; 
+
+
+    for i in $SDL;
     do
         cd $i
-        echo "creating source-templates and filling makefiles in ${i}"    
+        echo "creating source-templates and filling makefiles in ${i}"
         case $i in
         "m4")
             make_m4_makefile
-            ;;    
+            ;;
         "doc")
             make_doclevel_makefile
             make_htmldoc
@@ -1503,9 +1503,9 @@ function create_toplevel_directory
             make_blank_makefile_${LANGUAGE} $i
             ;;
         esac
-        cd ..   
+        cd ..
     done
-   
+
     make_toplevel_configure_${LANGUAGE}
     make_toplevel_makefile_${LANGUAGE}
     make_reconf_${LANGUAGE}
@@ -1513,11 +1513,11 @@ function create_toplevel_directory
 
     # Run the reconf script
     echo "+ Running reconf"
-    sh ./reconf 
+    sh ./reconf
 
     echo "+ integrate doxygen"
     integrate_doxygen
-    
+
     echo "+ integrating the correct license"
     if [ "$COMPANY" = "GNU" ]
     then
@@ -1527,10 +1527,10 @@ function create_toplevel_directory
       rm COPYING
       cp ${COMP_LONG_COPYRIGHT_NOTE} COPYING
     fi
-    
+
     echo "+ writing a change-release-script named $CHREFILE"
     write_chrefile
-    
+
     echo "+ writing a prepare cvsimport-file named $PREPCLEARREPCOMMITFILE"
     write_prepClearRepCommit
 
@@ -1547,7 +1547,7 @@ function create_toplevel_directory
 ############################################################################
 ############################################################################
 
-# 
+#
 # Parse the command-line arguments
 #
 
@@ -1590,7 +1590,7 @@ case $1 in
  *)
     usage
     exit
-    ;;        
+    ;;
 esac
 
 
@@ -1633,12 +1633,12 @@ LIBRELEASE="${RELE}:${BRAN}:${STEP}"
 # defining the module/library names
 # (1) sister - module = same level as main-source
 # beeing compiled into $(top_srcdir)/src
-    
+
 SIMONAME=`toUpper ${CNSIMO}`
 Simoname=`toCapitalized ${CNSIMO}`
 simoname=`toLower ${CNSIMO}`
 
-# (2) daugther - module = sub-level of src 
+# (2) daugther - module = sub-level of src
 # = really being an uninstalled, but linked static library
 # being compiled into $(top_srcdir)/src/daughter-module
 DAMONAME=`toUpper ${CNDAMO}`
