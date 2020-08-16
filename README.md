@@ -1,6 +1,6 @@
 # gtgt
 
-**gtgt** - pronounced: ***gitty-gitty*** - stands for "General/Gnu Template Generation Tools".
+- pronounced: ***gitty-gitty*** - stands for "General/Gnu Template Generation Tools":
 
 
 * Do you mean that the development of applications with GNU autoconf / automake doesn't seem to be as easy as possible?
@@ -10,8 +10,7 @@ Then the answer is **gtgt** , known as
 
 ## gitty gitty ...
 
-The (general | GNU) template generation tools are a set of scripts for creating and instantiating a complete set of sources which may already be compiled and
-installed by using the GNU development tools.
+The *(general | GNU) template generation tools* are a set of scripts for creating and instantiating a complete set of sources which may already be compiled and installed by using the GNU development tools.
 
 Think of gtgt as a program which ...
 
@@ -28,7 +27,7 @@ By using gitty-gitty, you will get a ***template of sources*** for the main case
 
 ## Usage
 
-How to install and use **gtgt** is described in a special [manual](./manual.md)
+How to install and use **gtgt** is described in a special [manual](./MANUAL.md)
 
 ## Licensing
 
