@@ -474,9 +474,9 @@ Usage: gscg <-c|-cpp|-h|-v> [-i|-s|-is] [MODULE] [PROJECT] [RELEASE]
  --help -h      this screen
  --version -v   version and license
  
- -i             echo include-code for the module
- -s             echo source-code for the module
- -is            write include- + source-code as file
+ -i             write include-code for the module
+ -s             write source-code for the module
+ -is            write both, the include- + source-code as file
 
 MODULE          should be a short module-identifier without
                 brackets, underlines, points etc. etc.

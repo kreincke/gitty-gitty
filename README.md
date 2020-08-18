@@ -1,38 +1,56 @@
 # gtgt
 
-- pronounced: ***gitty-gitty*** - stands for "General/Gnu Template Generation Tools":
+- pronounced: ***gitty-gitty*** - stands for "General/Gnu Template Generation Tools": As three cooperating scripts *gtgt* instantiates a set of sources which are readily prepared for being developed, compiled, and installed by the GNU 'autoconf/automake' development environment.
+
+If one uses the *autotools* then one can hardly use the GNU development tools for developing sources licensed under the terms of a NON-GNU-license. *gtgt* closes this gap: It shall enable the developers to use the GNU tools even if the result is licnsed under a NON-GNU-License.
+
+## <a id="sh10" /> (1) Getting *gitty-gitty*
+
+### <a id="sh11 /> 1.1. Prerequisites
+With the help of your operating system / Linux distribution install the following tools:
+  - bash
+  - gcc development tools
+  - autoconf
+  - automake
+  - libtools
+
+### <a id="sh12" /> 1.2 Sources
+
+There are two options to get *gtgt*: you can either clone the respective GItHub repository or you can download the corresponding [gtgt-tarball](https://github.com/kreincke/gitty-gitty)
+
+### <a id="sh13" /> 1.3 Installation
+
+1. **IF** you've downloaded the repository
+  * **THEN** open a terminal, change into the repository directory and enter the command ``./reconf``.
+  * **ELSE** open a terminal, extract the downloaded tarball and change into the *gtgt* directory
+2. Insert the commands
+  * ``./configure --prefix=YOUR_CHOICE``
+  * ``make``
+  * ``sudo make install``
+3. Insert the command ``gptg --help``. If you do not get the help screen, check your PATH variable: "YOUR_CHOICE/bin" must be part of the paths
+
+## <a id="sh2" />(2) Structure
+
+*gtgt* is a set of three bash scripts, each with a specific task:
+
+* ***gcng (= General Copyright Note Generator)*** generates files, which are instantiated by a copyright header.
+
+* ***gscg (=General Source Code Generator)*** generates already compilable software modules, particularly the respective header file and the corresponding source file: You can select c or c++ as the programming-language. Think of gscg as a program, which is able to create very sophisticated "hello world" modules.
+
+* ***gptg (=General Project Template Generator***) generates the whole set of files for an already compilable and installable software project: Using gscg + gcng, gptg instantiates and fills a project directory with the artifacts required by *autoconf* and *automake*. Think of gptg as a program which generates a quite sophisticated "hello world" program - being built upon two modules and one static library  and one shared library.
+
+These three programs operate on a configuration file named ``gcng.conf`` which contains the following elements;
+
+- The author-name
+- The email address of the author
+- The year of publishing the program (will be inserted automatically)
+- The name of the company licensing the sources
+- The absolute path to a short version of the company's license
+- The absolute path to a long version of the company's license
+
+If this file doesn't exist, you will be asked for the respective data and it will be created. If your company is GNU, you won't be asked for licenses, because they are known. If not, you have to create such licenses. They will be automatically used for generating the source code headers. Examples for those company licenses can be found in the *gtgt* documentation directory installed under ``$PREFIX/share/doc/gtgt``.
 
 
-* Do you mean that the development of applications with GNU autoconf / automake doesn't seem to be as easy as possible?
-* Do you want to have a completely elaborated automatically generated example which is already as most as possible prepared for your goals?
+## <a id="sh30" /> (3) Usage
 
-Then the answer is **gtgt** , known as
-
-## gitty gitty ...
-
-The *(general | GNU) template generation tools* are a set of scripts for creating and instantiating a complete set of sources which may already be compiled and installed by using the GNU development tools.
-
-Think of gtgt as a program which ...
-
-## .. is able to generate an already compilable ...
-
-very sophisticated "hello world" program, written in C or C++ and constituted by a main program, two internal modules (classes), one static and one shared library and one shell script. All these sources except the shell script contain a full set of possible doxygen-comments.
-
-This complex and documented "Hello World" program is already ...
-
-
-## ... fully embedded into GNU autoconf/automake environment
-
-By using gitty-gitty, you will get a ***template of sources*** for the main cases you might meet, and which you can also use as (teaching) examples for c/c++, doxygen, automake, autoconf, etc.
-
-## Usage
-
-How to install and use **gtgt** is described in a special [manual](./MANUAL.md)
-
-## Licensing
-
-(c) 2000 - 2020 [Karsten Reincke](mailto:k.reincke@fodina.de): **gitty-gitty** is licensed under the [GNU General Public License 3.0](http://www.gnu.org/copyleft/gpl.html)
-
-Due to the fact, that *gtgt* is a code generator and that its sub scripts contain code (which is copied into the generated sources), one normally should take the generated sources as derivative work of the templates. As a consequence of the strong copyleft effect, these generated and instantiated sources normally must also be released  under the terms of the GPL.
-
-That is not intended by **gitty-gitty**. Therefore we explicitly state that the code generated by *gtgt* and its sub scripts is not covered by the copyleft effect and can be published under any open or closed source license.
+We think that use of *gitty-gitty* should preferably be described in form of a [FAQ](./FAQ.md).

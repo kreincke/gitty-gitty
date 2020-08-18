@@ -155,8 +155,9 @@ EOF
 
 function make_README
 {
- cat >> README <<EOF
-Welcome to the project ${PROJECT} / release <#${RELEASE}#>
+ cat >> README.md <<EOF
+# ${PROJECT} / release <#${RELEASE}#>
+
 `gcng -ecl ${PROJECT}`
 -------------------------------------------------------
 `gcng -ech ${PROJECT}`
@@ -1309,7 +1310,7 @@ configure.in \
 Doxyfile \
 Makefile.am \
 NEWS \
-README \
+README.md \
 THANKS \
 "
 #---------------------------------------------------------------------------------

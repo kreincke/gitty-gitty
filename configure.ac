@@ -18,8 +18,8 @@
 
 dnl process this file with autoconf to produce a configure script
 dnl (1) -------- general startmacros
-AC_INIT(reconf)
-AM_INIT_AUTOMAKE(gtgt,3.2.0)
+AC_INIT([gtgt],[3.2.0], reconf)
+AM_INIT_AUTOMAKE([foreign])
 AM_CONFIG_HEADER(config.h)
 AC_PREFIX_DEFAULT(/usr/local/)
 AC_PROG_MAKE_SET
