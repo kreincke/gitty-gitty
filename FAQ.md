@@ -1,5 +1,9 @@
 # gtgt FAQ:
 
+
+* [.) ](#)
+
+
 ## <a id="q001" /> **What's the purpose of 'gtgt'?**
 
 **gtgt** - pronounced: ***gitty-gitty*** - stands for "General/Gnu Template Generation Tools": As three cooperating scripts *gtgt* instantiates a set of sources which are readily prepared for being developed, compiled, and installed by the GNU 'autoconf / automake' development environment.
