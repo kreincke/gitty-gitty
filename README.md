@@ -4,7 +4,7 @@
 
 If one uses the *autotools*, one can hardly use the GNU development tools to create software licensed under the terms of a NON-GNU-license. *gtgt* closes this gap: It shall enable the developers to use the GNU tools even if the result is licensed under a NON-GNU-License.
 
-The current release is <#4.0.0#>
+The current release is [<#4.0.0#>](./releases/gtgt-4.0.0.tar.gz)
 
 * [Getting *gitty-gitty*](#p10)
 * [The Structure of *gitty-gitty*](#p20)
