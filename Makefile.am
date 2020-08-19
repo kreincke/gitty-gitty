@@ -15,7 +15,7 @@
 #  
 # file <Makefile.am> version <#4.0.0#> of project <GTGT>
 
-EXTRA_DIST = reconf configure change-release prepClearRepCommit prj.spec README.md FAQ.mq
+EXTRA_DIST = reconf configure change-release prepClearRepCommit prj.spec README.md FAQ.md
 SUBDIRS = scripts doc
 
 # AUTOMAKE_OPTIONS = foreign

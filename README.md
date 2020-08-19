@@ -1,4 +1,4 @@
-# gtgt (pronounced ***gitty-gitty***) 
+# gtgt (pronounced ***gitty-gitty***)
 
  ***gtgt*** stands for "General/Gnu Template Generation Tools": As three cooperating scripts, *gtgt* instantiates a set of sources which are readily prepared for being developed, compiled, and installed by the GNU 'autoconf/automake' development environment.
 
@@ -26,7 +26,7 @@ With the help of your operating system / Linux distribution install the followin
 
 You have two options to get *gtgt*:
 * you can either clone its GitHub repository by using the command ``git clone https://github.com/kreincke/gitty-gitty.git``
-* or you can download the corresponding [gtgt-tarball](https://github.com/kreincke/gitty-gitty)
+* or you can download the corresponding [gtgt-tarball](./releases/gtgt-4.0.0.tar.gz)
 
 ### <a id="p13" />- Installation
 
