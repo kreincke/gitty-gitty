@@ -44,14 +44,14 @@ THANKS \
 #---------------------------------------------------------------------------------
 # change the following variables for adding new release numbers 
 OLDRELEASE=3    	# defines a release and a library interface
-OLDREVISION=1   	# defines a more important revision of a release
+OLDREVISION=2   	# defines a more important revision of a release
 OLDSTEP=0       	# defines a lowlevel revesion of a release
       	      	      	# (doesn't concern libraries
 OLDLIBAGE=0   	      	# indicates how many of the elder
       	      	      	# library-releases offer the same interface 
 
-NEWRELEASE=3
-NEWREVISION=2
+NEWRELEASE=4
+NEWREVISION=0
 NEWSTEP=0
 NEWLIBAGE=0   	      	
 

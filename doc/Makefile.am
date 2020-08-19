@@ -8,7 +8,7 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #  
-# file <doc/Makefile.am> version <#3.2.0#> of project <gtgt>
+# file <doc/Makefile.am> version <#4.0.0#> of project <gtgt>
 
 gtgt_helpdir = $(datadir)/doc/gtgt/
 

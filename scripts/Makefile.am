@@ -12,7 +12,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# file <scripts/Makefile.am> version <#3.2.0#> of project <GTGT>
+# file <scripts/Makefile.am> version <#4.0.0#> of project <GTGT>
 
 bin_SCRIPTS = gcng gscg gptg
 

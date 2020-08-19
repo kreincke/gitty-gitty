@@ -13,7 +13,7 @@
 # GNU General Public License for more details.
 # 
 #  
-# file <Makefile.am> version <#3.2.0#> of project <GTGT>
+# file <Makefile.am> version <#4.0.0#> of project <GTGT>
 
 EXTRA_DIST = reconf configure change-release prepClearRepCommit prj.spec README.md FAQ.mq
 SUBDIRS = scripts doc

@@ -10,7 +10,7 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
-# file <prj.spec> version <#3.2.0#> of project <GTGT>
+# file <prj.spec> version <#4.0.0#> of project <GTGT>
 
 IGNF=.gitignore
 

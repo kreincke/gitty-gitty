@@ -1,8 +1,10 @@
-# gtgt (pronounced ***gitty-gitty***)
+# gtgt (pronounced ***gitty-gitty***) 
 
  ***gtgt*** stands for "General/Gnu Template Generation Tools": As three cooperating scripts, *gtgt* instantiates a set of sources which are readily prepared for being developed, compiled, and installed by the GNU 'autoconf/automake' development environment.
 
-If one uses the *autotools*, one can hardly use the GNU development tools to create software licensed under the terms of a NON-GNU-license. *gtgt* closes this gap: It shall enable the developers to use the GNU tools even if the result is licensed under a NON-GNU-License:
+If one uses the *autotools*, one can hardly use the GNU development tools to create software licensed under the terms of a NON-GNU-license. *gtgt* closes this gap: It shall enable the developers to use the GNU tools even if the result is licensed under a NON-GNU-License.
+
+The current release is <#4.0.0#>
 
 * [Getting *gitty-gitty*](#p10)
 * [The Structure of *gitty-gitty*](#p20)

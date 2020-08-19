@@ -14,17 +14,19 @@
   - [What if I don't want to work with deeply embedded daughter modules?](#q011)
   - [What if I only want to offer a set of scripts?](#q012)
   - [What if I want to add a new sister module or a new class?](#q013)
-* [What, if I want to add a new module or class to a library?](#q014)
-* [What, if I want to create a new library?](#q015)
-* [What, if I want to add doc files or scripts?](#q016)
-* [What, if I want use VPATH?](#q017)
+* [How do I add a new module or class to a library?](#q014)
+* [How do I create a new library?](#q015)
+* [How do I add doc files or scripts?](#q016)
+* [How do I use VPATH?](#q017)
 * [What about the coding and documentation style?](#q018)
-* [What if I want to change the numbers of the release or the revision?](#q019)
-* [What if I want to add debugging and profiling information during the compilation?](#q020)
-* [What if I want to import my newly generated project into a repository or to use wildcards to commit and/or add files?](#q021)
-* [What if I want to build a rpm-package on the base of my tarball?](#q022)
+* [How do I change the numbers of the release or the revision?](#q019)
+* [How do I add debugging and profiling information during the compilation?](#q020)
+* [How do I import my newly generated project into a repository or to use wildcards to commit and/or add files?](#q021)
+* [How do I build a rpm-package on the base of my tarball?](#q022)
 * [How is gtgt licensed?](#q023)
 * [How can I give feedback?](#q024)
+* [What about the program context?](#q025)
+* [What about the program history?](#q026)
 <!-- * [ ](#q025)
 * [ ](#q026) -->
 
@@ -213,25 +215,25 @@ example: ** ***gscg -cpp -is modu mypo 1.0*** creates mypo.h and mypo.cpp
 
 5.  Then write and include your module / class
 
-## <a id="q014" /> **What, if I want to add a new module or class to a library?**
+## <a id="q014" /> **How do I add a new module or class to a library?**
 
 Nearly the same as for adding a new sister module. But act in the
 library directory instead of the source directory.
 
-## <a id="q015" /> **What, if I want to create a new library?**
+## <a id="q015" /> **How do I create a new library?**
 
 Nearly the same as for adding a new sister module. After having determined the library name (=module name) you need to insert the following information into the Makefile.am of your lib-directory:
 * lib_LIBRARIES=lib${modulename}.a
 * lib${modulename}_a_sources= $your-sources
 * Don't forget to insert the new library name in src/Makefile under ${YOURPROJECT}_LDADD as a string starting with -L
 
-## <a id="q016" /> **What, if I want to add doc files or scripts?**
+## <a id="q016" /> **How do I add doc files or scripts?**
 
 * Move the scripts and documentation files into the director doc respectively scripts
 * Change into the sub-directory doc resp. scripts of your project directory
 * Add the filenames of the new scripts to the variable EXTRA_DIST of Makefile.am . In case of shell-scripts, add the name also to the variable bin_SCRIPTS and to CLEANFILES and insert any makefile target for those scripts.
 
-## <a id="q017" /> **What, if I want use VPATH?**
+## <a id="q017" /> **How do I use VPATH?**
 
 The VPATH variable allows us to use other directories whose content is able to fulfill the dependencies although it's not directly integrated into the 'make' procedure. Using this variable, one can split the object-files and its sources:
 
@@ -261,7 +263,7 @@ Last but not least, we have added the doxygen documentation style into the autom
 For being generally acceptable, we have adopted the c++ and c coding standard. But note: There doesn't exist "**the** coding standard"; you can find more than one which differ in more or less details. Therefore we give only one hint for a [C++ Coding
 Standard](http://www.possibility.com/Cpp/CppCodingStandard.html) while recommending to have a look at the others, being found with some search engine.
 
-## <a id="q019" /> **What if I want to change the numbers of the release or the revision?**
+## <a id="q019" /> **How do I change the numbers of the release or the revision?**
 
 Last but not least we have integrated a script into the GNU-source-tree which allows the change of the release- and the revision-number.
 
@@ -279,7 +281,7 @@ Note: In the string "-version-info xc:xr:xa" , which arises in the *Makefile.am*
 
 But this row of integers "xc:xr:xa" arises not directly in the version of a shared library. You have to read such version-numbers like the scheme *libxxx-so.xc.xa.xr*: the first integer of a library-version number denotes the current release, the second the age(\!) and the third the the revision number.
 
-## <a id="q020" /> **What if I want to add debugging and profiling information during the compilation?**
+## <a id="q020" /> **How do I add debugging and profiling information during the compilation?**
 
 In each Makefile.am *gtgt* offers four different lines with compiler flags:
 
@@ -299,7 +301,7 @@ So, if you want to add debug info, uncomment line 2 after having
 commented line 1. If you want to add debug and profiling info,
 uncomment line 4 after having commented line 1. And if you want to use optimized code, uncomment line 3 after having commented line 1.
 
-## <a id="q021" /> **What if I want to import my newly generated project into a repository or to use wildcards to commit and/or add files?**
+## <a id="q021" /> **How do I import my newly generated project into a repository or to use wildcards to commit and/or add files?**
 
 If you import a more or less elaborated project into a repository, you should not import binary files and not files, which can be derived from other files by using any program. *gtgt* supports the clearing of your working directory by gathering the necessary commands in a specific script *prepClearRepCommit.sh*:
 
@@ -310,7 +312,7 @@ If you import a more or less elaborated project into a repository, you should no
 After having called *prepClearRepCommit.sh* you can therefore import, commit or add files with wildcards without having to reflect which of themselves files should not be committed. For getting back the files erased by *prepClearRepCommit.sh* insert the commands ``reconf``, ``configure`` and ``make``
 
 
-## <a id="q022" /> **What if I want to build a rpm-package on the base of my tarball?**
+## <a id="q022" /> **How do I build a rpm-package on the base of my tarball?**
 
 Beginning with release 2.0.0 gtgt automatically generates a specfile named ``prj.spec``. Using the command ``rpm -bb prj.spec`` you will get the rpm-package containing the same files like the tarball generated by the commands
 * ``make distcheck``
@@ -330,3 +332,29 @@ That is not intended by *gitty-gitty*. Therefore we explicitly state that the co
 ## <a id="q024" /> **How can I give feedback?**
 
 Feel free to use the GitHub methods or directly to write to  [k.reincke@fodina.de](mailto://k.reincke@fodina.de]). You are strongly encouraged to correct, to suggest, to wish ... For further information have a look at [www.fodina.de](http://www.fodina.de)
+
+## <a id="q025" /> **What about the program context?**
+
+For understanding the general purpose of the **(general | GNU)-template-generation-tools**, we should have a look at an abbreviated version of the history of programming with the *gcc*:
+
+1. At the beginning we hard nothing but ***gcc***: we had to call each act of a compilation  on the command-line by inserting the respective name and the right versions of the source-code: ***(practical, but not comfortable)***
+2. The next step of the evolution was "MAKE": with that tool we were not only able to create scripts for compiling more than one set of sources, but we could manage respect dependencies. ***(comfortable, but not the end of the world)***
+3. Then there was the problem to compile the sources for more than one specific hardware environment. This problem led to ***autoconf***: We were setting up two scripts, *configure.in* and *Makefile.in*. In the first one, we specified those aspects in a declarative way, which we wanted to have been tested. Then we called *autoconf* which took the ***configure.in*** scripts and created the well known ***configure*** script. This script itself took the ***makefile.in***, testsed the environment and replaced the variables in the *makefile.in* by the test-results and derived the *makefiles*. The advantage of this method was, that we only had to create the files ***configure.in*** and ***makefile.in*** for using hardware specific information by writing variables into our *makefile.in*: ***(a bit better, but still optimizable)***
+4. "Why" - so the next question - "shouldn't it be possible to use a high-level declarative language for saying what we want to compile instead of using the old makefile-language?" The answer was ***automake***: This script took the files ***Makefile.am*** and ***configure.in*** and created the file ***Makefile.in***. As a software-developer we now only had to write our intentions into the file *Makefile.am* and *configure.in*: ***(the world seemed to be good, but was not the best of all possible ones)***
+5. The GNU development tools demanded a lot more files than ***Makefile.am*** and ***configure.in***: One had at least to create the files *NEWS*, *Changelog*, *Install*, *README*, and one had to generate a specific directory structure. For automating these steps, ***autotools*** was invented: By this tool, one could create a whole but empty environment for the GNU development tools. Additionally  one could generate files containing a copyright-note. (*autotools* has been invented by [Eleftherios Gkioulekas](http://www.amath.washington.edu/~lf/tutorials/autoconf/)): ***(yoop, yoop, but ...)***
+6. There are two requirements, which can't be fulfilled by *autotools*: If you want to have your own licenses in your sources, you can't use *autotools* because they only offer GNU files and -conditions. Of course, GNU is fine, but it's not everything. And although you are using *autotools* you still have to declare and define all functions inside of your sources and you need to setup the correct Makefile.am an configure.in in a corresponding way. That can be automated too - at least for a starting version. And that's the task of the ***(general | GNU) template generation tools***. They are able to replace the *autotools* and contain three scripts: ***gcng***, ***gscg*** and ***gptg***.
+
+
+## <a id="q026" /> **What about the program history?**
+The development of *gtgt* started in the year 2000. The results up to release 3.2. were hosted under sourceforge and fodina.
+
+* sourceforge:
+  - package: [http://gtgt.sourceforge.net/gtgt-3.2.0.tar.gz](http://gtgt.sourceforge.net/gtgt-3.2.0.tar.gz)
+  - page: [http://gtgt.sourceforge.net/](http://gtgt.sourceforge.net/)
+  * docu: [http://gtgt.sourceforge.net/gtgt.html](http://gtgt.sourceforge.net/gtgt.html)
+* fodina:
+  - package: [http://gtgt.fodina.de/gtgt-3.2.0.tar.gz](http://gtgt.fodina.de/gtgt-3.2.0.tar.gz)
+  - page: [http://gtgt.fodina.de/](http://gtgt.fodina.de/)
+  - docu: [http://gtgt.fodina.de/gtgt.html](http://gtgt.fodina.de/gtgt.html)
+
+But these versions are deprecated.
