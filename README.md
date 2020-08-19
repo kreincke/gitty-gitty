@@ -26,7 +26,7 @@ With the help of your operating system / Linux distribution install the followin
 
 You have two options to get *gtgt*:
 * you can either clone its GitHub repository by using the command ``git clone https://github.com/kreincke/gitty-gitty.git``
-* or you can download the corresponding [gtgt-tarball](./releases/gtgt-4.0.0.tar.gz)
+* or you can download the corresponding [gtgt-tarball](./releases/)
 
 ### <a id="p13" />- Installation
 
