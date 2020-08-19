@@ -1,17 +1,18 @@
-# gtgt
+# gtgt (pronounced ***gitty-gitty***)
 
-- pronounced: ***gitty-gitty*** - stands for "General/Gnu Template Generation Tools": As three cooperating scripts *gtgt* instantiates a set of sources which are readily prepared for being developed, compiled, and installed by the GNU 'autoconf/automake' development environment.
+ ***gtgt*** stands for "General/Gnu Template Generation Tools": As three cooperating scripts, *gtgt* instantiates a set of sources which are readily prepared for being developed, compiled, and installed by the GNU 'autoconf/automake' development environment.
 
-If one uses the *autotools* then one can hardly use the GNU development tools for developing sources licensed under the terms of a NON-GNU-license. *gtgt* closes this gap: It shall enable the developers to use the GNU tools even if the result is licensed under a NON-GNU-License:
+If one uses the *autotools*, one can hardly use the GNU development tools to create software licensed under the terms of a NON-GNU-license. *gtgt* closes this gap: It shall enable the developers to use the GNU tools even if the result is licensed under a NON-GNU-License:
 
-* [1.) Getting *gitty-gitty*](#p10)
-* [2.) The Structure of *gitty-gitty*](#p20)
-* [3.) The Usage of *gitty-gitty*](#p30)
-* [4.) The License of *gitty-gitty*](#p40)
+* [Getting *gitty-gitty*](#p10)
+* [The Structure of *gitty-gitty*](#p20)
+* [The Usage of *gitty-gitty*](#p30)
+* [The License of *gitty-gitty*](#p40)
 
-## <a id="p10" /> (1) Getting *gitty-gitty*
 
-### <a id="p11 /> 1.1. Prerequisites
+## <a id="p10" />(1) Getting *gitty-gitty*
+
+### <a id="p11" /> 1.1. Prerequisites
 With the help of your operating system / Linux distribution install the following tools:
   - bash
   - gcc development tools
@@ -21,7 +22,9 @@ With the help of your operating system / Linux distribution install the followin
 
 ### <a id="p12" /> 1.2 Sources
 
-There are two options to get *gtgt*: you can either clone the respective GItHub repository or you can download the corresponding [gtgt-tarball](https://github.com/kreincke/gitty-gitty)
+You have two options to get *gtgt*:
+* you can either clone its GitHub repository by using the command ``git clone https://github.com/kreincke/gitty-gitty.git``
+* or you can download the corresponding [gtgt-tarball](https://github.com/kreincke/gitty-gitty)
 
 ### <a id="p13" /> 1.3 Installation
 
@@ -34,7 +37,7 @@ There are two options to get *gtgt*: you can either clone the respective GItHub 
   * ``sudo make install``
 3. Insert the command ``gptg --help``. If you do not get the help screen, check your PATH variable: "YOUR_CHOICE/bin" must be part of the paths
 
-## <a id="p2" />(2) Script-Structure
+## <a id="p20" />(2) Script-Structure
 
 *gtgt* is a set of three bash scripts, each with a specific task:
 
