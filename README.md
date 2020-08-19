@@ -1,6 +1,4 @@
-![gitty-gitty logo](doc/gtgt.gif)
-
-# gtgt (pronounced ***gitty-gitty***)
+# gtgt (pronounced ***gitty-gitty***) ![gitty-gitty logo](doc/gtgt.gif)
 
  ***gtgt*** stands for "General/Gnu Template Generation Tools": As three cooperating scripts, *gtgt* instantiates a set of sources which are readily prepared for being developed, compiled, and installed by the GNU 'autoconf/automake' development environment.
 
