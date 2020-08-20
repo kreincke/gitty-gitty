@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # gptg: general-project-template-generator
-# Copyright (C) 2001 - 2020 Karsten Reincke <k.reincke@fodina.de>
+# Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
 #
 # a script to generate
 # (a) the file and directory-structure
@@ -89,7 +89,7 @@ function version
 gptg $VERSION - general packet-template generator -
 generates directory tree for new software package
 
-Copyright (C) 2000 - 2020 Karsten Reincke <k.reincke@fodina.de>
+Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
 
 This file is part of of the software-project GTGT.
 
@@ -1238,6 +1238,7 @@ fi
   then
     svn propset svn:ignore -F .cvsignore .;
   fi
+  cp .cvsignore .gitignore
 )
 
 done
@@ -1264,6 +1265,7 @@ if [ -e .svn ];
 then
   svn propset svn:ignore -F .cvsignore .;
 fi
+cp .cvsignore .gitignore
 
 EOF
  chmod u+x  $PREPCLEARREPCOMMITFILE

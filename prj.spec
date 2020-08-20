@@ -1,13 +1,13 @@
-# Copyright (C) 2001-2009 Karsten Reincke <karsten.reincke@fodina.de >
-#  
+# Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
+#
 # This file is free software; as a special exception the author gives
-# unlimited permission to copy and/or distribute it, with or without 
+# unlimited permission to copy and/or distribute it, with or without
 # modifications, as long as this notice is preserved.
-# 
+#
 # This program is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#  
+#
 # file <prj.spec> version <#3.2.0#> of project <GTGT>
 
 
@@ -101,10 +101,10 @@ managed and developed by using the autoconf/automake tools
 # (4) In the prep-section, the focus is entirely on directing RPM through
 #     the process of preparing the software for building
 #   	(= unpack / collect / checkout all the needed sources).
-#     The working directory will implicitely changed onto 
+#     The working directory will implicitely changed onto
 #     /usr/src/packages/BUILD by the rpm command itself.
 #     If you unpack / collect / checkout anything it is positioned there.
-#     You can denote the directory where you've really started the rpm 
+#     You can denote the directory where you've really started the rpm
 #     by the variable OLDPWD
 ############################################################################
 %prep

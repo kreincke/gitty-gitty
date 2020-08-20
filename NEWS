@@ -1,7 +1,5 @@
 Project GTGT / release <#4.0.0#> -- History of visible changes.
-Copyright (C) 2001/2002/2003/2004/2005/2006/2007/2008/2009 
-karsten reincke <karsten.reincke@fodina.de>
-Please send GTGT bug reports to karsten.reincke@fodina.de.
+Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG 
 -------------------------------------------------------
 This file is part of of the software-project GTGT.
 
@@ -16,9 +14,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software 
+along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 Please see the file COPYING for details.
 -------------------------------------------------------
 see ChangeLog
-

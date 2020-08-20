@@ -1,20 +1,15 @@
 #!/bin/sh
 #
-# Copyright (C) 2001/2002/2003 karsten reincke <karsten.reincke@fodina.de>
-#  
-# This file is part of of the software-project GTGT.
-# 
-# GTGT is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-# 
-# GTGT is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-# 
-# file <reconf> version <#4.0.0#> of project <GTGT>
+# Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
+#
+# This file is free software; as a special exception the author gives
+# unlimited permission to copy and/or distribute it, with or without
+# modifications, as long as this notice is preserved.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
 
 
 TESTDIRS="/usr/local/gnu/share/aclocal /usr/local/share/aclocal /opt/gnome/share/aclocal /usr/share/aclocal /opt/share/aclocal"
@@ -30,7 +25,7 @@ done
 
 DELCONF_FILES=`ls config.*`
 DELETE_FILES=" config.cache    acconfig.h    Makefile    Makefile.in    aclocal.m4    configure    ${DELCONF_FILES}"
-for DF in ${DELETE_FILES}; 
+for DF in ${DELETE_FILES};
 do
   echo "deleting ${DF}"
   find . -name ${DF} -exec rm \{\} \;
@@ -42,7 +37,7 @@ echo "- libtoolize"
 libtoolize
 
 echo "- aclocal."
-aclocal $ACLOCAL_PATH 
+aclocal $ACLOCAL_PATH
 echo "- autoconf."
 autoconf
 echo "- autoheader."
@@ -50,4 +45,3 @@ autoheader
 echo "- automake."
 automake -a
 exit
-

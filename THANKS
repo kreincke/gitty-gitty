@@ -1,6 +1,6 @@
 Welcome to the project GTGT / release <#4.0.0#>
-Copyright (C) 2001/2002/2003 
-karsten reincke <karsten.reincke@fodina.de>
+Copyright (C) 2020 Karsten Reincke. Deutsche Telekom AG
+
 -------------------------------------------------------
 This file is part of of the software-project GTGT.
 
@@ -15,31 +15,32 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software 
+along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 Please see the file COPYING for details.
-------------------------------------------------------- 
+-------------------------------------------------------
 
 GTGT THANKS file
 
-The project GTGT has originally been initiated by karsten reincke.
-Many people have further contributed to GTGT by reporting problems, 
+The project GTGT has originally been initiated by Karsten Reincke.
+Many people have further contributed to GTGT by reporting problems,
 suggesting various improvements, or submitting actual code. Here is
 a list of these people. Help me keep it complete and exempt of errors.
 
 --- Christian Heissing
     has tested and corrected the first published version 0.8
-    
+
 --- Eleftherios Gkioulekas
     is the main person who must be named at this point: he wrote not only
     the autotools, but the handout: learning the GNU development tools
     both have been a base for the general software-project prepare-tools,
     the autotools as scipt-base and the handout as learning-base.
-    
+
 --- Guido Sassmannshausen
     has corrected the documentation
-    
---- ICDM (http://www.icdm.de mailto:dialog@icdm.de)
-    my company, which wants to have such software-project prepare-tools,
-    which has decided to reform gnu-software and which therefore has 
-    decided to give new gnu-software back.
+
+--- ICDM (http://www.icdm.de)
+    my company in the year 2000, which wanted to get such software-project prepare-tools, decided to reform gnu-software and to give the new gnu-software back to the community
+
+--- Deutsche Telekom AG (http://www.telekom.com)
+    My employer in the year 2020 (and many other years before) who decided to use this tool set as a working base for implementing a test driven working model in the OpenChain tooling working group

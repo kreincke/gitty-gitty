@@ -1,3 +1,26 @@
+
+<!--
+Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
+-------------------------------------------------------
+This file is part of of the software-project GTGT.
+
+GTGT is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+GTGT is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+Please see the file COPYING for details.
+-------------------------------------------------------
+# file <change-release> version <#4.0.0#> of project <GTGT>
+-->
 # gtgt FAQ:
 
 
@@ -47,6 +70,8 @@ For using *gtgt* you must have installed:
   - autoconf
   - automake
   - libtools
+  - doxygen
+  - graphviz
 
 ## <a id="q003"></a> **Where can I get 'gtgt'?**
 
@@ -360,6 +385,8 @@ The development of *gtgt* started in the year 2000. The results up to release 3.
   - docu: [http://gtgt.fodina.de/gtgt.html](http://gtgt.fodina.de/gtgt.html)
 
 But these versions are deprecated.
+
+In the year 2020, I could reactivate *gtgt* as release 4.0 during my working hours due to the fact, that my company 'Deutsche Telekom AG' needed *gtgt* to implement a test driven working model in the ***OpenChain*** *compliance tooling working group*. Because *gtgt* has already been published under the terms of the GPL-v3 in the year 2000, it is clear, that also this new version is released under the GPL-v3.
 
 ## What shall I do if I get one of the following fault messages?
 

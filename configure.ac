@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (C) 2001-2009 karsten reincke <karsten.reincke@fodina.de>
+# Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
 #  
 # This file is part of of the software-project GTGT.
 # 

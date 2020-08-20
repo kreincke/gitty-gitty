@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2001-2009 Karsten Reincke <karsten.reincke@fodina.de >
+# Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
 #
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without
@@ -10,7 +10,6 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
-# file <prj.spec> version <#4.0.0#> of project <GTGT>
 
 IGNF=.gitignore
 
@@ -73,10 +72,9 @@ echo "mkinstalldirs" >> ${IGNF}
 echo "aclocal.m4" >> ${IGNF}
 echo "configure" >> ${IGNF}
 echo "Makefile.in" >> ${IGNF}
-echo "Makefile" >> ${IGNF} 
+echo "Makefile" >> ${IGNF}
 echo "stamp-h" >> ${IGNF}
 echo "config.h" >> ${IGNF}
 echo "config.log" >> ${IGNF}
 echo "config.status" >> ${IGNF}
 echo "libtool" >> ${IGNF}
-

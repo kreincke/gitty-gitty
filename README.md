@@ -1,3 +1,25 @@
+<!--
+Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
+-------------------------------------------------------
+This file is part of of the software-project GTGT.
+
+GTGT is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+GTGT is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+Please see the file COPYING for details.
+-------------------------------------------------------
+# file <change-release> version <#4.0.0#> of project <GTGT>
+-->
 ![gitty-gitty logo](doc/gtgt.gif)
 
  ***gtgt*** - (pronounced ***gitty-gitty***) - stands for "General/Gnu Template Generation Tools": As three cooperating scripts, *gtgt* instantiates a set of sources which are readily prepared for being developed, compiled, and installed by the GNU 'autoconf/automake' development environment.
@@ -21,6 +43,8 @@ With the help of your operating system / Linux distribution install the followin
   - autoconf
   - automake
   - libtools
+  - doxygen
+  - graphviz
 
 ### <a id="p12" />- Sources
 
@@ -65,7 +89,7 @@ If this file doesn't exist, you will be asked for the respective data and it wil
 
 ## <a id="p40" />License
 
-(c) 2000 - 2020 Karsten Reincke: *gitty-gitty* is licensed under the GNU General Public License 3.0
+(c) 2020 Karsten Reincke, Deutsche Telekom: *gitty-gitty* is licensed under the GNU General Public License 3.0
 
 Due to the fact, that *gtgt* is a code generator and that its sub scripts contain code (which is copied into the generated sources), one normally should take the generated sources as derivative work of the templates. Hence, as a consequence of the strong copyleft effect, these generated and instantiated sources normally must also be released under the terms of the GPL.
 

@@ -1,24 +1,24 @@
 #!/bin/bash
 #
 # gcng: general copyright notice generator
-# Copyright (C) 2001-2009 karsten reincke <karsten.reincke@fodina.de>
-#  
+# Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
+#
 # This file is part of of the software-project GTGT.
-# 
+#
 # GTGT is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # GTGT is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-#  
-# file <gcng> version <#3.2.0#> of project <GTGT>
+#
+# file <gcng> version <#4.0.0#> of project <GTGT>
 
-VERSION="<#3.2.0#>"
- 
+VERSION="<#4.0.0#>"
+
 # =============================
 # == Usage related functions ==
 # =============================
@@ -33,9 +33,9 @@ Usage: gcng [OPTION] [ PROJECT ] [ FILE ] [ VERSION ]
  -cS            echos short special (LGPL-) notice for a C file
  -ccS           echos short special (LGPL-) notice for a C++ file
  -shS           echos short special (LGPL-) notice for a shell file
- -cL            echos long special (LGPL-) notice for a C file 
- -ccL           echos long notice (LGPL-) notice for a C++ file 
- -shL           echos long notice (LGPL-) notice for a shell file 
+ -cL            echos long special (LGPL-) notice for a C file
+ -ccL           echos long notice (LGPL-) notice for a C++ file
+ -shL           echos long notice (LGPL-) notice for a shell file
  -m4            echos notice for an m4 file (autoconf macros)
  -am            echos notice for Makefile.am
  -l             echos a copy of the package-relevant license
@@ -57,7 +57,7 @@ function version
 {
  cat << EOF
 gcng $VERSION - The general copyright notice generator
-Copyright (C) 2000,2001,2002,2003 karsten reincke <reincke@fodina.de>
+Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
 
 This file is part of of the software-project GTGT.
 
@@ -72,7 +72,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software 
+along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 EOF
@@ -101,7 +101,7 @@ function get_copyright_data
    AUT_YEAR=`date +%Y`
    echo -n "The name of your company is:                  "
    read COMPANY
-   
+
    if [ -z $COMPANY ];
    then
         COMPANY="GNU"
@@ -111,7 +111,7 @@ function get_copyright_data
             COMPANY="GNU"
         fi
    fi
-   
+
    if [ $COMPANY != "GNU" ]
    then
         echo "insert the path of the short copyright-note of your company and"
@@ -120,7 +120,7 @@ function get_copyright_data
         read COMP_SHORT_COPYRIGHT_NOTE
         echo -n "The filename of its' long copyright-note is:  "
         read COMP_LONG_COPYRIGHT_NOTE
-        
+
         if [ -z ${COMP_SHORT_COPYRIGHT_NOTE} ];
         then
             COMP_SHORT_COPYRIGHT_NOTE="unknown"
@@ -129,8 +129,8 @@ function get_copyright_data
         then
             COMP_LONG_COPYRIGHT_NOTE="unknown"
         fi
-        
-        
+
+
    else
         COMP_SHORT_COPYRIGHT_NOTE="function"
         COMP_LONG_COPYRIGHT_NOTE="function"
@@ -141,7 +141,7 @@ function get_copyright_data
    echo ${COMPANY} >> gcng.conf
    echo ${COMP_SHORT_COPYRIGHT_NOTE} >> gcng.conf
    echo ${COMP_LONG_COPYRIGHT_NOTE} >> gcng.conf
-   
+
    echo "Got it! If you ever need to change any of this, edit the file gcng.conf"
    echo "findable in your actual working directory"
  fi
@@ -151,7 +151,7 @@ function get_copyright_data
  export COMPANY
  export COMP_LONG_COPYRIGHT_NOTE=`eval echo $COMP_LONG_COPYRIGHT_NOTE`
  export COMP_SHORT_COPYRIGHT_NOTE=`eval echo $COMP_SHORT_COPYRIGHT_NOTE`
- 
+
 }
 
 function generic_copyright
@@ -193,10 +193,10 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software 
+along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 EOF
-    else        
+    else
         echo "copyright conditions offered by the company ${COMPANY}"
         if [ -n ${COMP_SHORT_COPYRIGHT_NOTE} ];
         then
@@ -220,7 +220,7 @@ function special_header
     echo " "
     if [ ${COMPANY} = "GNU" ];
     then
-  
+
  cat << EOF
 This file is part of of the software-project ${FPRJNAME}.
 
@@ -259,9 +259,9 @@ function m4_header_extra_permission
     echo " "
  cat <<EOF
 
-As a special exception to the normally used license, if you 
-distribute this file as part of a program that contains a configuration 
-script generated by Autoconf, you may include it under the same 
+As a special exception to the normally used license, if you
+distribute this file as part of a program that contains a configuration
+script generated by Autoconf, you may include it under the same
 distribution terms that you use for the rest of that program.
 EOF
     echo " "
@@ -275,15 +275,15 @@ EOF
 function guile_header
 {
     local libname=$1
-    
+
     generic_copyright
     echo " "
     if [ ${COMPANY} = "GNU" ];
     then
  cat <<EOF
 
-As a special exception to the GNU General Public License, permission is 
-granted for additional uses of the text contained in its release 
+As a special exception to the GNU General Public License, permission is
+granted for additional uses of the text contained in its release
 of ${libname}.
 
 The exception is that, if you link the ${libname} library with other files
@@ -295,7 +295,7 @@ linking the ${libname} library code into it.
 This exception does not however invalidate any other reasons why
 the executable file might be covered by the GNU General Public License.
 
-This exception applies only to the code released under the 
+This exception applies only to the code released under the
 name ${libname}.  If you copy code from other releases into a copy of
 ${libname}, as the General Public License permits, the exception does
 not apply to the code that you add in this way.  To avoid misleading
@@ -304,7 +304,7 @@ this exception notice from them.
 
 If you write modifications of your own for ${libname}, it is your choice
 whether to permit this exception to apply to your modifications.
-If you do not wish that, delete this exception notice.  
+If you do not wish that, delete this exception notice.
 EOF
     else
         echo "copyright conditions offered by the company ${COMPANY}"
@@ -323,7 +323,7 @@ function cc_header
     echo "/*"
     generic_header | awk '{ print " * " $0 }'
     echo " */"
-    echo "" 
+    echo ""
 }
 
 function cc_header_special
@@ -421,21 +421,21 @@ function am_header
 # ============================
 
 function echo_company_license_hint
-{    
+{
     if [ -z $1 ];
     then
         OFFER="this package"
     else
         OFFER="this package named <$1>"
     fi
-    
+
     echo "$OFFER is totally published under a special"
     echo "license of the company $COMPANY. it is not free!"
-    echo "for details have a look at the file COPYING" 
+    echo "for details have a look at the file COPYING"
 }
 
 function echo_gnu_license_hint
-{    
+{
         cat << EOF
 This file is part of of the software-project ${FPRJNAME}.
 
@@ -450,7 +450,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software 
+along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 EOF
 }
@@ -471,7 +471,7 @@ function print_gnu_public_license
     echo "copyright conditions for the associated package and its files:"
     echo " "
 
-  sed 's/^X//' << 'SHAR_EOF' 
+  sed 's/^X//' << 'SHAR_EOF'
 X		    GNU GENERAL PUBLIC LICENSE
 X		       Version 2, June 1991
 X
@@ -812,7 +812,7 @@ consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Library General
 Public License instead of this License.
 SHAR_EOF
-    
+
 }
 
 # The comment above is used to fix fontification under emacs
@@ -834,7 +834,7 @@ case $1 in
   ;;
 --license)
   print_gnu_public_license
-  exit 
+  exit
   ;;
   *)
 esac
@@ -866,7 +866,7 @@ case $1 in
   version
   ;;
 --license)
-  print_gnu_public_license 
+  print_gnu_public_license
   ;;
 -c)
   cc_header
@@ -881,7 +881,7 @@ case $1 in
   cpp_header
   ;;
 -ccS)
-  cpp_header_special 
+  cpp_header_special
   ;;
 -ccL)
   cpp_header_library
@@ -920,7 +920,7 @@ case $1 in
     echo_company_license_hint $2
   fi
   ;;
-  
+
 *)
   usage
   ;;

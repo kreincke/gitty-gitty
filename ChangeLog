@@ -1,7 +1,6 @@
 Project GTGT / release <#4.0.0#> -- ChangeLog
 gtgt (pronounce gittygitty): general(or gnu)-template-generation-tools
-Copyright (C) 2001/2002/2003/2004/2005/2006/2007/2008/2009 
-karsten reincke <karsten.reincke@fodina.de>
+Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG 
 -------------------------------------------------------
 This file is part of of the software-project GTGT.
 
@@ -22,9 +21,12 @@ Please see the file COPYING for details.
 -------------------------------------------------------
 For details see http://www.gnu.org/ or read the file COPYING
 -------------------------------------------------------
-2020-08-19 :- publisged gtgt release 4.0.0
+2020-08-21 :- published gtgt release 4.0.0
              - aligned the tools for using GitHub 
-             - rewritten README and FAQ in the md format  
+             - rewritten README and FAQ in the md format
+             - improved change-release script
+             - adapted to the new autoconf/automake style
+             - many smaller fixes
 2009-01-10 :- published gtgt release 3.2.0
              - changerelease improved
 2008-12-25 :-
