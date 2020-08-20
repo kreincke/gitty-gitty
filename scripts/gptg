@@ -339,8 +339,8 @@ EOF
 # ==================================================
 
 # --------------------------------------------------------------------
-# These functions make the default configure.in and Makefile.am files
-# The default configure.in file assumes that you are programming
+# These functions make the default configure.ac and Makefile.am files
+# The default configure.ac file assumes that you are programming
 # only in C++ and uses the LF macros instead of the standard
 # Autoconf macros for configuring the compiler.
 # It also includes a call to LF_CPP_PORTABILITY
@@ -349,14 +349,14 @@ EOF
 # (1.A) toplevel configure for c++-program
 function make_toplevel_configure_cpp
 {
-    echo "creating configure.in at toplevel (mode cpp)"
+    echo "creating configure.ac at toplevel (mode cpp)"
 OUTL="Makefile"
 for i in $WORK_SDL
 do
     OUTL="$OUTL ${i}/Makefile"
 done
 
-    cat >> configure.in <<EOF
+    cat >> configure.ac <<EOF
 dnl process this file with autoconf to produce a configure script
 dnl (1) -------- general startmacros -------------
 AC_INIT([${project}],[${RELEASE}])
@@ -429,7 +429,7 @@ AM_CXXFLAGS = -DLinux -Wall -ansi -pedantic
 
 SUBDIRS=daughter-module
 
-INCLUDES = -I\$(top_srcdir)/lib -I\$(top_srcdir)/src/daughter-module
+AM_CPPFLAGS = -I\$(top_srcdir)/lib -I\$(top_srcdir)/src/daughter-module
 
 bin_PROGRAMS = ${project}
 ${project}_SOURCES = \\
@@ -664,7 +664,7 @@ EOF
 }
 
 # --------------------------------------------------------------------
-# These functions make the traditional configure.in and Makefile.am
+# These functions make the traditional configure.ac and Makefile.am
 # files. This is for people who want to follow the GNU coding
 # standards a lot more closer than I do. It assumes that you are
 # using C only and does not use any LF macros
@@ -679,7 +679,7 @@ do
     OUTL="$OUTL ${i}/Makefile"
 done
 
- cat >> configure.in <<EOF
+ cat >> configure.ac <<EOF
 dnl process this file with autoconf to produce a configure script
 dnl (1) -------- general startmacros
 AC_INIT([${project}],[${RELEASE}])
@@ -747,7 +747,7 @@ AM_CFLAGS = -DLinux -Wall -ansi -pedantic
 #AM_CFLAGS = -DLinux -Wall -ansi -pedantic -g -pg
 
 SUBDIRS=daughter-module
-INCLUDES = -I\$(top_srcdir)/lib -I\$(top_srcdir)/src/daughter-module
+AM_CPPFLAGS = -I\$(top_srcdir)/lib -I\$(top_srcdir)/src/daughter-module
 
 bin_PROGRAMS = ${project}
 ${project}_SOURCES = \\
@@ -1308,7 +1308,7 @@ CFP="\
 *.in \
 AUTHORS \
 ChangeLog \
-configure.in \
+configure.ac \
 Doxyfile \
 Makefile.am \
 NEWS \
@@ -1369,9 +1369,9 @@ cat xyz.tmp | while read mt; do
   done
 done
 
-find . -type f -name "configure.in" |
+find . -type f -name "configure.ac" |
 while read file; do
-  echo "setting \$OLDVERSION onto \$NEWVERSION in configure.in"
+  echo "setting \$OLDVERSION onto \$NEWVERSION in configure.ac"
   mv \$file \$file.sav
   sed -e "/\[\$OLDVERSION)\]/s/\$OLDVERSION/\$NEWVERSION/" \$file.sav > \$file
   rm \$file.sav
@@ -1455,9 +1455,9 @@ function create_toplevel_directory
     done
 
 
-    echo "creating blank Makefile.am, configure.in and reconf"
+    echo "creating blank Makefile.am, configure.ac and reconf"
     gcng -am ${PROJECT} Makefile.am ${RELEASE} > Makefile.am
-    gcng -shS ${PROJECT} configure.in ${RELEASE} > configure.in
+    gcng -shS ${PROJECT} configure.ac ${RELEASE} > configure.ac
     gcng -shS ${PROJECT} reconf ${RELEASE} > reconf
     chmod u+x reconf
 
