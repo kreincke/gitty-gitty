@@ -1297,15 +1297,18 @@ function write_chrefile
 #---------------------------------------------------------------------------------
 #  define the mimetypes which shall be reviewed
 CFP="\
-*.html \
-*.txt \
-*.cpp \
-*.cc \
-*.c \
-*.h \
-*.sh \
-*.c \
-*.in \
+\*.html \
+\*.txt \
+\*.cpp \
+\*.cc \
+\*.c \
+\*.h \
+\*.sh \
+\*.c \
+\*.in \
+\*.md \
+prj.spec \
+reconf \
 AUTHORS \
 ChangeLog \
 configure.ac \
@@ -1358,7 +1361,7 @@ then
   exit
 fi
 
-echo \$CFP | tr ' ' '\n'> xyz.tmp
+echo \$CFP | tr -d '\\' | tr ' ' '\n'> xyz.tmp
 cat xyz.tmp | while read mt; do
   echo "changing files of mimetyp \$mt";
   find . -type f -name "\$mt" |
@@ -1373,7 +1376,7 @@ find . -type f -name "configure.ac" |
 while read file; do
   echo "setting \$OLDVERSION onto \$NEWVERSION in configure.ac"
   mv \$file \$file.sav
-  sed -e "/\[\$OLDVERSION)\]/s/\$OLDVERSION/\$NEWVERSION/" \$file.sav > \$file
+  sed -e "/[\$OLDVERSION)]/s/\$OLDVERSION/\$NEWVERSION/" \$file.sav > \$file
   rm \$file.sav
 done
 
@@ -1393,7 +1396,24 @@ while read file; do
   rm \$file.sav
 done
 
-find . -type f -name "proj.spec" |
+find . -type f -name "*.html" |
+while read file; do
+  echo "setting projectnumber \$OLDVERSION onto \$NEWVERSION in html"
+  mv \$file \$file.sav
+  sed -e "/projectnumber\">\$OLDVERSION/s/\$OLDVERSION/\$NEWVERSION/" \$file.sav > \$file
+  rm \$file.sav
+done
+
+find . -type f -name "*.html" |
+while read file; do
+  echo "setting #\$OLDVERSION# onto \$NEWVERSION in html"
+  mv \$file \$file.sav
+  sed -e "/#\$OLDVERSION#/s/\$OLDVERSION/\$NEWVERSION/" \$file.sav > \$file
+  rm \$file.sav
+done
+
+
+find . -type f -name "prj.spec" |
 while read file; do
   echo "setting \$OLDVERSION onto \$NEWVERSION in prj.spec"
   mv \$file \$file.sav
