@@ -23,9 +23,9 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# file <gptg> version <#3.2.0#> of project <GTGT>
+# file <gptg> version <#4.0.0#> of project <GTGT>
 
-VERSION="<#3.2.0#>"
+VERSION="<#4.0.0#>"
 
 # =============================
 # == Usage related functions ==
@@ -360,7 +360,7 @@ done
 dnl process this file with autoconf to produce a configure script
 dnl (1) -------- general startmacros
 AC_INIT(reconf)
-AM_INIT_AUTOMAKE(${project},${RELEASE})
+AM_INIT_AUTOMAKE([${project}],[${RELEASE}])
 AM_CONFIG_HEADER(config.h)
 AC_PREFIX_DEFAULT(/usr/local/)
 AC_PROG_MAKE_SET
@@ -1348,7 +1348,7 @@ OLDLIBVERSION="\${OLDLIBTOOLCURRENT}\:\${OLDLIBTOOLREVISION}\:\${OLDLIBTOOLAGE}"
 NEWVERSION="\${NEWRELEASE}\.\${NEWREVISION}\.\${NEWSTEP}"
 NEWLIBVERSION="\${NEWLIBTOOLCURRENT}\:\${NEWLIBTOOLREVISION}\:\${NEWLIBTOOLAGE}"
 
-if [ "$1" = "-h" -o "$1" = "--help" ]
+if [ "\$1" = "-h" -o "\$1" = "--help" ]
 then
   echo "script for changing revision- and branchnumbers"
   echo "usage:  change-release [ -h | --help ]"
@@ -1356,47 +1356,47 @@ then
   exit
 fi
 
-echo $CFP | tr ' ' '\n'> xyz.tmp
+echo \$CFP | tr ' ' '\n'> xyz.tmp
 cat xyz.tmp | while read mt; do
-  echo "changing files of mimetyp $mt";
-  find . -type f -name "$mt" |
+  echo "changing files of mimetyp \$mt";
+  find . -type f -name "\$mt" |
   while read file; do
-    echo "updating file <$file>"
-    cat $file | sed "/<#$OLDVERSION#>/s/$OLDVERSION/$NEWVERSION/g" > xxx.tmp
-    mv xxx.tmp $file
+    echo "updating file <\$file>"
+    cat \$file | sed "/<#\$OLDVERSION#>/s/\$OLDVERSION/\$NEWVERSION/g" > xxx.tmp
+    mv xxx.tmp \$file
   done
 done
 
 find . -type f -name "configure.in" |
 while read file; do
-  echo "setting $OLDVERSION onto $NEWVERSION in configure.in"
-  mv $file $file.sav
-  sed -e "/(mypmpsfactory,$OLDVERSION)/s/$OLDVERSION/$NEWVERSION/" $file.sav > $file
-  rm $file.sav
+  echo "setting \$OLDVERSION onto \$NEWVERSION in configure.in"
+  mv \$file \$file.sav
+  sed -e "/\[\$OLDVERSION)\]/s/\$OLDVERSION/\$NEWVERSION/" \$file.sav > \$file
+  rm \$file.sav
 done
 
 find . -type f -name "Makefile.am" |
 while read file; do
-  echo "setting $OLDVERSION onto $NEWVERSION in libsection of $file"
-  mv $file $file.sav
-  sed -e "/info $OLDLIBVERSION/s/$OLDLIBVERSION/$NEWLIBVERSION/" $file.sav > $file
-  rm $file.sav
+  echo "setting \$OLDVERSION onto \$NEWVERSION in libsection of \$file"
+  mv \$file \$file.sav
+  sed -e "/info \$OLDLIBVERSION/s/\$OLDLIBVERSION/\$NEWLIBVERSION/" \$file.sav > \$file
+  rm \$file.sav
 done
 
 find . -type f -name "Doxyfile" |
 while read file; do
-  echo "setting $OLDVERSION onto $NEWVERSION in Doxyfile"
-  mv $file $file.sav
-  sed -e "/PROJECT_NUMBER = $OLDVERSION/s/$OLDVERSION/$NEWVERSION/" $file.sav > $file
-  rm $file.sav
+  echo "setting \$OLDVERSION onto \$NEWVERSION in Doxyfile"
+  mv \$file \$file.sav
+  sed -e "/PROJECT_NUMBER = \$OLDVERSION/s/\$OLDVERSION/\$NEWVERSION/" \$file.sav > \$file
+  rm \$file.sav
 done
 
 find . -type f -name "proj.spec" |
 while read file; do
-  echo "setting $OLDVERSION onto $NEWVERSION in prj.spec"
-  mv $file $file.sav
-  sed -e "/define PRJ_RELEASE $OLDVERSION/s/$OLDVERSION/$NEWVERSION/" $file.sav > $file
-  rm $file.sav
+  echo "setting \$OLDVERSION onto \$NEWVERSION in prj.spec"
+  mv \$file \$file.sav
+  sed -e "/define PRJ_RELEASE \$OLDVERSION/s/\$OLDVERSION/\$NEWVERSION/" \$file.sav > \$file
+  rm \$file.sav
 done
 rm  xyz.tmp
 
