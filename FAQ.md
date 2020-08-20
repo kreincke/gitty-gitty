@@ -27,17 +27,19 @@
 * [How can I give feedback?](#q024)
 * [What about the program context?](#q025)
 * [What about the program history?](#q026)
+* What shall I do if I get one of the following fault messages?
+- [What about '... cannot open shared object file: No such file ...'?](#fm01)
 <!-- * [ ](#q025)
 * [ ](#q026) -->
 
 
-## <a id="q001" /> **What's the purpose of 'gtgt'?**
+## <a id="q001"></a> **What's the purpose of 'gtgt'?**
 
 **gtgt** - pronounced: ***gitty-gitty*** - stands for "General/Gnu Template Generation Tools": As three cooperating scripts *gtgt* instantiates a set of sources which are readily prepared for being developed, compiled, and installed by the GNU 'autoconf / automake' development environment.
 
 If one uses the *autotools* then one can hardly use the GNU development tools for developing sources licensed under the terms of a NON-GNU-license. *gtgt* closes this gap: It shall enable the developers to use the GNU tools even if the result is licnsed under a NON-GNU-License.
 
-## <a id="q002" /> **Which components does 'gtgt' require?**
+## <a id="q002"></a> **Which components does 'gtgt' require?**
 
 For using *gtgt* you must have installed:
   - bash
@@ -46,13 +48,13 @@ For using *gtgt* you must have installed:
   - automake
   - libtools
 
-## <a id="q003" /> **Where can I get 'gtgt'?**
+## <a id="q003"></a> **Where can I get 'gtgt'?**
 
 There are two options to get *gtgt*:
 * You can either clone the respective GitHub repository using the command [https://github.com/kreincke/gitty-gitty.git](https://github.com/kreincke/gitty-gitty.git)
 * Or you can download a tarball from [gtgt-tarball](releases)
 
-## <a id="q004" /> **How can I install 'gtgt'?**
+## <a id="q004"></a> **How can I install 'gtgt'?**
 
 1. **IF** you've downloaded the repository
   * **THEN** open a terminal, change into the repository directory and enter the command ``./reconf``.
@@ -63,7 +65,7 @@ There are two options to get *gtgt*:
   * ``sudo make install``
 3. Insert the command ``gptg --help``. If you do not get the help screen, check your PATH variable: "YOUR_CHOICE/bin" must be part of the paths
 
-## <a id="q005" /> **Which sub-tools does 'gtgt' offer?**
+## <a id="q005"></a> **Which sub-tools does 'gtgt' offer?**
 
 *gtgt* is a set of three bash scripts, each with a specific task:
 
@@ -73,7 +75,7 @@ There are two options to get *gtgt*:
 
 * ***gptg (=General Project Template Generator***) generates the whole set of files for an already compilable and installable software project: Using gscg + gcng, gptg instantiates and fills a project directory with the artifacts required by *autoconf* and *automake*. Think of gptg as a program which generates a quite sophisticated "hello world" program - being built upon two modules and one static library  and one shared library.
 
-## <a id="q006" /> **How do I configure 'gtgt'?**
+## <a id="q006"></a> **How do I configure 'gtgt'?**
 
 The three *gtgt*-scripts operate on a configuration file named ``gcng.conf`` which contains the following elements;
 
@@ -87,7 +89,7 @@ The three *gtgt*-scripts operate on a configuration file named ``gcng.conf`` whi
 If this file doesn't exist, you will be asked for the respective data and it will be created. If your company is GNU, you won't be asked for licenses, because they are known. If not, you have to create such licenses. They will be automatically used for generating the source code headers. Examples for those company licenses can be found in the *gtgt* documentation directory installed under ``$PREFIX/share/doc/gtgt``.
 
 
-## <a id="q007" /> **How do I create my first project?**
+## <a id="q007"></a> **How do I create my first project?**
 
 1. Create a short project name like 'mypo', which does not contain blanks or other separators. Think of it as a name, not as a double name or sentence or anything else. Following the c/c++-coding-standard this name will automatically be changed in some cases: he can be capitalized or written in lower or upper cases.
 2. Decide, whether you want to use C or C++ as a programming-language. (If you only want to write shell scripts, you may choose any of these.)
@@ -123,7 +125,7 @@ If this file doesn't exist, you will be asked for the respective data and it wil
 
 You now have to adopt these options to your wishes and you can use this automatically generated project as a teaching example to handle *autoconf* and *configure.in*, *automake* and *Makefile.am* and *configure.in*. Because the sources are following the c/c++ coding standard and are already commented in the doxygen style, you can take them as teaching examples for these aspects, too.
 
-## <a id="q008" /> **How do I license my project?**
+## <a id="q008"></a> **How do I license my project?**
 
 GNU and its GPL is good. Very good, indeed. But sometimes it's not all. Therefore, for example, the LGPL has been created. Well, you should be able to create applications following the GNU methods and GNU recommendations and using the GNU tools - without publishing your results under the GPL. In these cases you might want to distribute your sources under a special 'company' license. And this license should be referred by all your files.
 
@@ -143,11 +145,11 @@ gcng.conf, line 5 and 6 will be evaluated as absolute paths of your company lice
 
 The gtgt-tarball offers two license examples inside the doc-directory: the file "company-license.long" and the file "company-license.short". Note: They haven't been legally checked! They exist for demonstrating the technical possibilities.
 
-## <a id="q009" /> **What if I want to build my tarball with more or less or other source files than instantiated by the *gptg* script?**
+## <a id="q009"></a> **What if I want to build my tarball with more or less or other source files than instantiated by the *gptg* script?**
 
 Very simple, in the first part of the following chapters, we explain what you should do, if you don't want to use the full set of files. And in the second part we explain, what you need to do, if you want to expand set files.
 
-## <a id="q010" /> **What if I don't want to write libraries?**<a id="dellib" />
+## <a id="q010"></a> **What if I don't want to write libraries?**<a id="dellib"></a>
 
 Read ${YOURPRJ} as a name of your project:
 
@@ -161,7 +163,7 @@ Read ${YOURPRJ} as a name of your project:
 6. Delete all lines containing the sub-string '_stli' in the source-files ${YOURPRJ}.c(pp)
 7. Change back into the top-directory and call *autoconf* and *automake* or call the *reconf*-script
 
-## <a id="q011" /> **What if I don't want to work with deeply embedded daughter modules?**
+## <a id="q011"></a> **What if I don't want to work with deeply embedded daughter modules?**
 
 1. Change into the top-directory of your project
 2. Delete the sub-string 'src/damo/Makefile' as parameter of the macro AC_OUTPUT in the file 'configure.in'
@@ -171,7 +173,7 @@ Read ${YOURPRJ} as a name of your project:
 6. Delete the directory 'damo' in your src-directory
 7. Change back into the top-directory and call *autoconf* and *automake* or call the *reconf*-script
 
-## <a id="q012" /> **What if I only want to offer a set of scripts?**
+## <a id="q012"></a> **What if I only want to offer a set of scripts?**
 
 1. [Delete the libraries](#dellib) like described above.
 2. Change into the top-directory of your project
@@ -180,7 +182,7 @@ Read ${YOURPRJ} as a name of your project:
 5. Delete the sub-string 'src' as parameter of the macro SUBDIRS in the file 'Makefile.am'
 6. Change back into the top-directory and call *autoconf* and *automake* or call the *reconf*-script
 
-## <a id="q013" /> **What if I want to add a new sister module or a new class?**
+## <a id="q013"></a> **What if I want to add a new sister module or a new class?**
 
 Sister modules are sources with a declaring *header-file* and a defining *source-file* and lay in the same directory as the main *source-file*. For generating such a module do this:
 
@@ -215,25 +217,25 @@ example: ** ***gscg -cpp -is modu mypo 1.0*** creates mypo.h and mypo.cpp
 
 5.  Then write and include your module / class
 
-## <a id="q014" /> **How do I add a new module or class to a library?**
+## <a id="q014"></a> **How do I add a new module or class to a library?**
 
 Nearly the same as for adding a new sister module. But act in the
 library directory instead of the source directory.
 
-## <a id="q015" /> **How do I create a new library?**
+## <a id="q015"></a> **How do I create a new library?**
 
 Nearly the same as for adding a new sister module. After having determined the library name (=module name) you need to insert the following information into the Makefile.am of your lib-directory:
 * lib_LIBRARIES=lib${modulename}.a
 * lib${modulename}_a_sources= $your-sources
 * Don't forget to insert the new library name in src/Makefile under ${YOURPROJECT}_LDADD as a string starting with -L
 
-## <a id="q016" /> **How do I add doc files or scripts?**
+## <a id="q016"></a> **How do I add doc files or scripts?**
 
 * Move the scripts and documentation files into the director doc respectively scripts
 * Change into the sub-directory doc resp. scripts of your project directory
 * Add the filenames of the new scripts to the variable EXTRA_DIST of Makefile.am . In case of shell-scripts, add the name also to the variable bin_SCRIPTS and to CLEANFILES and insert any makefile target for those scripts.
 
-## <a id="q017" /> **How do I use VPATH?**
+## <a id="q017"></a> **How do I use VPATH?**
 
 The VPATH variable allows us to use other directories whose content is able to fulfill the dependencies although it's not directly integrated into the 'make' procedure. Using this variable, one can split the object-files and its sources:
 
@@ -251,7 +253,7 @@ The VPATH variable allows us to use other directories whose content is able to f
 
 The main point of this procedure is this: make recursively follows the structure of vpdir. There make meets its targets. And it seeks the sources, named inside of the Makefile and not really being in the make directory. But make finds them none-the-less, because it looks for them in all directories named by the variable VPATH which in this case is indicating the directory source as an add-on
 
-##  <a id="q018" /> **What about the coding and documentation style?**
+##  <a id="q018"></a> **What about the coding and documentation style?**
 
 Last but not least, we have added the doxygen documentation style into the automatically generated source-files of your project initially created by the gitty-gitty-tools. This includes that
 
@@ -263,7 +265,7 @@ Last but not least, we have added the doxygen documentation style into the autom
 For being generally acceptable, we have adopted the c++ and c coding standard. But note: There doesn't exist "**the** coding standard"; you can find more than one which differ in more or less details. Therefore we give only one hint for a [C++ Coding
 Standard](http://www.possibility.com/Cpp/CppCodingStandard.html) while recommending to have a look at the others, being found with some search engine.
 
-## <a id="q019" /> **How do I change the numbers of the release or the revision?**
+## <a id="q019"></a> **How do I change the numbers of the release or the revision?**
 
 Last but not least we have integrated a script into the GNU-source-tree which allows the change of the release- and the revision-number.
 
@@ -281,7 +283,7 @@ Note: In the string "-version-info xc:xr:xa" , which arises in the *Makefile.am*
 
 But this row of integers "xc:xr:xa" arises not directly in the version of a shared library. You have to read such version-numbers like the scheme *libxxx-so.xc.xa.xr*: the first integer of a library-version number denotes the current release, the second the age(\!) and the third the the revision number.
 
-## <a id="q020" /> **How do I add debugging and profiling information during the compilation?**
+## <a id="q020"></a> **How do I add debugging and profiling information during the compilation?**
 
 In each Makefile.am *gtgt* offers four different lines with compiler flags:
 
@@ -301,7 +303,7 @@ So, if you want to add debug info, uncomment line 2 after having
 commented line 1. If you want to add debug and profiling info,
 uncomment line 4 after having commented line 1. And if you want to use optimized code, uncomment line 3 after having commented line 1.
 
-## <a id="q021" /> **How do I import my newly generated project into a repository or to use wildcards to commit and/or add files?**
+## <a id="q021"></a> **How do I import my newly generated project into a repository or to use wildcards to commit and/or add files?**
 
 If you import a more or less elaborated project into a repository, you should not import binary files and not files, which can be derived from other files by using any program. *gtgt* supports the clearing of your working directory by gathering the necessary commands in a specific script *prepClearRepCommit.sh*:
 
@@ -312,15 +314,15 @@ If you import a more or less elaborated project into a repository, you should no
 After having called *prepClearRepCommit.sh* you can therefore import, commit or add files with wildcards without having to reflect which of themselves files should not be committed. For getting back the files erased by *prepClearRepCommit.sh* insert the commands ``reconf``, ``configure`` and ``make``
 
 
-## <a id="q022" /> **How do I build a rpm-package on the base of my tarball?**
+## <a id="q022"></a> **How do I build a rpm-package on the base of my tarball?**
 
 Beginning with release 2.0.0 gtgt automatically generates a specfile named ``prj.spec``. Using the command ``rpm -bb prj.spec`` you will get the rpm-package containing the same files like the tarball generated by the commands
 * ``make distcheck``
 * ``configure  --prefix=/usr/local && make && install``
 
-For changing the spec-file see <http://www.rpm.org/>.
+For changing the spec-file see  [http://www.rpm.org](http://www.rpm.org).
 
-## <a id="q023" /> **How is gtgt licensed?**
+## <a id="q023"></a> **How is gtgt licensed?**
 
 (c) 2000 - 2020 Karsten Reincke: *gitty-gitty* is licensed under the GNU General Public License 3.0
 
@@ -329,11 +331,11 @@ Due to the fact, that *gtgt* is a code generator and that its sub scripts contai
 That is not intended by *gitty-gitty*. Therefore we explicitly state that the code generated by *gtgt* and its sub scripts is not covered by the copyleft effect and can be published under any open or closed source license.
 
 
-## <a id="q024" /> **How can I give feedback?**
+## <a id="q024"></a> **How can I give feedback?**
 
 Feel free to use the GitHub methods or directly to write to  [k.reincke@fodina.de](mailto://k.reincke@fodina.de]). You are strongly encouraged to correct, to suggest, to wish ... For further information have a look at [www.fodina.de](http://www.fodina.de)
 
-## <a id="q025" /> **What about the program context?**
+## <a id="q025"></a> **What about the program context?**
 
 For understanding the general purpose of the **(general | GNU)-template-generation-tools**, we should have a look at an abbreviated version of the history of programming with the *gcc*:
 
@@ -345,7 +347,7 @@ For understanding the general purpose of the **(general | GNU)-template-generati
 6. There are two requirements, which can't be fulfilled by *autotools*: If you want to have your own licenses in your sources, you can't use *autotools* because they only offer GNU files and -conditions. Of course, GNU is fine, but it's not everything. And although you are using *autotools* you still have to declare and define all functions inside of your sources and you need to setup the correct Makefile.am an configure.in in a corresponding way. That can be automated too - at least for a starting version. And that's the task of the ***(general | GNU) template generation tools***. They are able to replace the *autotools* and contain three scripts: ***gcng***, ***gscg*** and ***gptg***.
 
 
-## <a id="q026" /> **What about the program history?**
+## <a id="q026"></a> **What about the program history?**
 The development of *gtgt* started in the year 2000. The results up to release 3.2. were hosted under sourceforge and fodina.
 
 * sourceforge:
@@ -358,3 +360,12 @@ The development of *gtgt* started in the year 2000. The results up to release 3.
   - docu: [http://gtgt.fodina.de/gtgt.html](http://gtgt.fodina.de/gtgt.html)
 
 But these versions are deprecated.
+
+## What shall I do if I get one of the following fault messages?
+
+### <a id="fm01"></a> **What about '... cannot open shared object file: No such file ...'?**
+
+This message could be evoked by two reasons: either you have installed the program you developed under a specific path (and you are probably calling it directly from that location) or you have installed it under one of the common places (``/usr`` or ``/usr/local``), but the shared-lib-mechanism of your operating system still has not been told that you did so. For both reasons, the solution is simple:
+
+* Verify that there exist a conf-file under ``/etc/ld.so.conf.d/`` containing the path to to your installation. If such a file is missed, create one.
+* call ``sudo ldconfig``
