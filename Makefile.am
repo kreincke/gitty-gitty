@@ -18,4 +18,4 @@
 EXTRA_DIST = reconf configure change-release prepClearRepCommit prj.spec README.md FAQ.md
 SUBDIRS = scripts doc
 
-# AUTOMAKE_OPTIONS = foreign
+AUTOMAKE_OPTIONS = foreign

@@ -358,16 +358,16 @@ done
 
     cat >> configure.in <<EOF
 dnl process this file with autoconf to produce a configure script
-dnl (1) -------- general startmacros
-AC_INIT(reconf)
-AM_INIT_AUTOMAKE([${project}],[${RELEASE}])
+dnl (1) -------- general startmacros -------------
+AC_INIT([${project}],[${RELEASE}])
+AM_INIT_AUTOMAKE()
 AM_CONFIG_HEADER(config.h)
 AC_PREFIX_DEFAULT(/usr/local/)
 AC_PROG_MAKE_SET
 
-dnl (2) -------- set of available languages
+dnl (2) -------- set of available languages ------
 
-dnl (3) -------- checks for programs
+dnl (3) -------- checks for programs --------------
 
 AC_PROG_CC
 AC_PROG_CPP
@@ -682,8 +682,8 @@ done
  cat >> configure.in <<EOF
 dnl process this file with autoconf to produce a configure script
 dnl (1) -------- general startmacros
-AC_INIT(reconf)
-AM_INIT_AUTOMAKE(${project},${RELEASE})
+AC_INIT([${project}],[${RELEASE}])
+AM_INIT_AUTOMAKE()
 AM_CONFIG_HEADER(config.h)
 AC_PREFIX_DEFAULT(/usr/local/)
 AC_PROG_MAKE_SET
@@ -717,6 +717,8 @@ function make_toplevel_makefile_c
     cat >> Makefile.am <<EOF
 EXTRA_DIST = reconf configure ${ADD_TOPLEVEL_DIST}
 SUBDIRS = m4 scripts doc lib src
+
+AUTOMAKE_OPTIONS = foreign
 EOF
 }
 
@@ -1461,8 +1463,8 @@ function create_toplevel_directory
 
 
     # Create templates for the standard information files
-    echo "creating filled NEWS README AUTHORS THANKS ChangeLog"
-    touch NEWS README AUTHORS THANKS ChangeLog
+    echo "creating filled NEWS README.md AUTHORS THANKS ChangeLog"
+    touch NEWS README.md AUTHORS THANKS ChangeLog
     make_NEWS
     make_README
     make_AUTHORS
