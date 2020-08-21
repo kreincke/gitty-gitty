@@ -1,173 +1,81 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html>
-<head>
-  <meta name="description"
-    content="This is the manual of gitty-gitty, the general/gnu-template-generation-tools" />
-  <meta name="author" content="karsten reincke" />
-  <meta name="keywords" content="gtgt, gitty-gitty, general/gnu-template-generation-tools" />
-  <meta name="date" content="2006-03-04T10:00:00+00:00" />
-<title>gitty-gitty</title>
-</head>
-<body bgcolor="#b4b6b4" text="#000000" link="#000000" vlink="#000000" alink="#008000">
+<!--
+Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
+-------------------------------------------------------
+This file is part of of the software-project GTGT.
 
-<div align="center">
-  <h2><b><font color="black">gtgt</font></b></h2>
-  <h2><i><font color="red">gitty-gitty</font></i></h2>
-  <h3><b><font color="#ffbb00">The General/Gnu Template Generation Tools</font></b></h3>
-  <h3><i>version <#4.0.0#></i></h3>
-</div><p>
+GTGT is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
 
-<div align="center">
-<table>
-<tr>
-  <td><font size="7"><b>&laquo;</b></font></td>
-  <td>
-    <b><i><div align="center">
-      Do you mean that the development of applications with GNU<br />
-       autoconf / automake doesn't seem to be as easy as possible?
-    </div></i></b>
-  </td>
-  <td><b>&raquo;</b></font></td>
-</tr>
-<tr>
-  <td><font size="7"><b>&laquo;</b></font></td>
-  <td>
-    <b><i><div align="center">
-      Do you want to have a full elaborated automatically generated<br />
-       example being already as most as possible prepared for your goals?
-    </div></i></b>
-  </td>
-  <td><font size="7"><b>&raquo;</b></font></td>
-</tr>
-<tr>
-  <td></td>
-  <td>
-    <div align="center">    
-    <table>
-      <tr>
-        <td><div align="rigth"><b>OK, here is</b></div></td>
-        <td><a href="http://www.fodina.de/gtgt/gtgt-3.0.0.tar.gz">
-            <img src="gtgt.gif" width="60" height="57" border="0"></a>
-        </td>
-        <td><div align="left"><b>gitty-gitty !!!</b></div></td>
-      </tr>
-    </table>
-    </div>  
-  </td>
-  <td></td>
-</tr>
-<tr>
-  <td colspan="3">
-    &copy; 2000,2001,2002,2003,2004,2005,2006,2007
-      <a href="mailto:karsten.reincke@fodina.de">
-      karsten reincke</a>. gtgt is published under the 
-      <a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a>
-  </td>
-</tr>
-</table>
-</div>
+GTGT is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-<div align="center">
-<table>
-<tr>
-  <td />
-  <td><div align="center"><b><i>gitty-gitty ...</i></b></div></td>
-  <td />
-</tr>
-<tr>
-  <td colspan="3">
-    <p>
-      the (general | GNU) template generation tools, 
-      are a set of scripts for creating a whole set of sources which may
-      already be compiled and installed using the GNU development tools.
-      Think of gtgt as a program which ...
-    </p>
-  </td>
-</tr>
-<tr>
-  <td />
-  <td>
-    <div align="center"><p><b><i><font color="red">
-      is able to generate an already compilable ...</font>
-    </i></b></p></div>
-  </td>
-  <td />
-</tr>
-<tr>
-  <td colspan="3">
-    <p>
-      very sophisticated "hello world" program,
-       written in C or C++ and constituted by a main program, two
-       internal modules (classes), one static and one shared library
-       and one shellscript. All these sources exept the shellscript
-       contain a full set of possible doxygen-comments.
-       And this complex documented "Hello World" is already ...
-     </p>
-  </td>
-</tr>
-
-<tr>
-  <td />
-  <td>
-    <div align="center"><p><b><i><font color="#ffbb00">
-      fully embedded into GNU autoconf/automake, ...
-    </font></i></b></p></div>
-  </td>
-  <td />
-</tr>
-<tr>
-  <td colspan="3">
-    <p>the GNU development environment. By using gitty-gitty, you will get a ...</p>
-  </td>
-</tr>
-<tr>
-  <td />
-  <td><div align="center"><p><b><i>template of sources</i></b></p></div>
-  </td>
-  <td />
-</tr>
-<tr>
-  <td colspan="3">
-    <p>
-      for the main cases you might meet, and which you can also use
-      as (teaching) examples for c/c++, doxygen, automake, autoconf, etc.
-   </p>
-  </td>
-</tr>
-</table>
-</div>
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+Please see the file COPYING for details.
+-------------------------------------------------------
+# file <change-release> version <#4.0.0#> of project <GTGT>
+-->
+<figure>
+<img src="doc/gtgt.gif" alt="gitty-gitty logo" /><figcaption>gitty-gitty logo</figcaption>
+</figure>
+<p><strong><em>gtgt</em></strong> - (pronounced <strong><em>gitty-gitty</em></strong>) - stands for “General/Gnu Template Generation Tools”: As three cooperating scripts, <em>gtgt</em> instantiates a set of sources which are readily prepared for being developed, compiled, and installed by the GNU ‘autoconf/automake’ development environment.</p>
+<p>If one uses the <em>autotools</em>, one can hardly use the GNU development tools to create software licensed under the terms of a NON-GNU-license. <em>gtgt</em> closes this gap: It shall enable the developers to use the GNU tools even if the result is licensed under a NON-GNU-License.</p>
+<p>The current release is <a href="https://github.com/kreincke/gitty-gitty/tree/releases">&lt;#4.0.0#&gt;</a></p>
 <ul>
-<li>
-  <p>online <b><a href="gtgt.html">documentation</a></b></p>
-</li>
-<li>
-  <p>
-    http-download
-    <b><a href="http://gtgt.sourceforge.net/gtgt-3.1.0.tar.gz">
-    gtgt-3.1.0.tar.gz</a></b>
-    <font color="#00000">hosted by</font>
-    <b><a href="http://gtgt.sourceforge.net/" target="_parent">
-    gtgt.sourceforge.net</b></a></b>
-  </p>
-</li>
-<li>
-  <p>
-    http-download
-    <b><a href="http://gtgt.fodina.de/gtgt-3.1.0.tar.gz">
-    gtgt-3.1.0.tar.gz</a></b>
-    <font color="ffbb00">hosted by</font>
-    <b><a href="http://gtgt.fodina.de/" target="_parent">
-    gtgt.fodina.de</a></b>
-  </p> 
-</li>
-<li>
-  <b><a href="http://sourceforge.net/projects/gtgt/">Older releases</a></b>
-</li>
+<li><a href="#p10">Getting <em>gitty-gitty</em></a></li>
+<li><a href="#p20">The Structure of <em>gitty-gitty</em></a></li>
+<li>Usage -&gt; <a href="./FAQ.md">FAQ</a></li>
+<li><a href="#p40">The License of <em>gitty-gitty</em></a></li>
 </ul>
-<p>
-Thanks for hosting this projects to<br />
-<A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=14924&type=5" width="210" height="62"
-border="0" alt="SourceForge Logo"></A>
-</p>
-</body>
-</html>
+<h2 id="getting-gitty-gitty"><a id="p10" />Getting <em>gitty-gitty</em></h2>
+<h3 id="prerequisites"><a id="p11" />- Prerequisites</h3>
+<p>With the help of your operating system / Linux distribution install the following tools: - bash - gcc development tools - autoconf - automake - libtools - doxygen - graphviz</p>
+<h3 id="sources"><a id="p12" />- Sources</h3>
+<p>You have two options to get <em>gtgt</em>: * you can either clone its GitHub repository by using the command <code>git clone https://github.com/kreincke/gitty-gitty.git</code> * or you can download the corresponding <a href="https://github.com/kreincke/gitty-gitty/tree/releases">gtgt-release-branch</a></p>
+<h3 id="installation"><a id="p13" />- Installation</h3>
+<ol type="1">
+<li><strong>IF</strong> you’ve downloaded the repository</li>
+</ol>
+<ul>
+<li><strong>THEN</strong> open a terminal, change into the repository directory and enter the command <code>./reconf</code>.</li>
+<li><strong>ELSE</strong> open a terminal, extract the downloaded tarball and change into the <em>gtgt</em> directory</li>
+</ul>
+<ol start="2" type="1">
+<li>Insert the commands</li>
+</ol>
+<ul>
+<li><code>./configure --prefix=YOUR_CHOICE</code></li>
+<li><code>make</code></li>
+<li><code>sudo make install</code></li>
+</ul>
+<ol start="3" type="1">
+<li>Insert the command <code>gptg --help</code>. If you do not get the help screen, check your PATH variable: “YOUR_CHOICE/bin” must be part of the paths</li>
+</ol>
+<h2 id="script-structure"><a id="p20" />Script-Structure</h2>
+<p><em>gtgt</em> is a set of three bash scripts, each with a specific task:</p>
+<ul>
+<li><p><strong><em>gcng (= General Copyright Note Generator)</em></strong> generates files, which are instantiated by a copyright header.</p></li>
+<li><p><strong><em>gscg (=General Source Code Generator)</em></strong> generates already compilable software modules, particularly the respective header file and the corresponding source file: You can select c or c++ as the programming-language. Think of gscg as a program, which is able to create very sophisticated “hello world” modules.</p></li>
+<li><p><strong><em>gptg (=General Project Template Generator</em></strong>) generates the whole set of files for an already compilable and installable software project: Using gscg + gcng, gptg instantiates and fills a project directory with the artifacts required by <em>autoconf</em> and <em>automake</em>. Think of gptg as a program which generates a quite sophisticated “hello world” program - being built upon two modules and one static library and one shared library.</p></li>
+</ul>
+<p>These three programs operate on a configuration file named <code>gcng.conf</code> which contains the following elements;</p>
+<ul>
+<li>The author-name</li>
+<li>The email address of the author</li>
+<li>The year of publishing the program (will be inserted automatically)</li>
+<li>The name of the company licensing the sources</li>
+<li>The absolute path to a short version of the company’s license</li>
+<li>The absolute path to a long version of the company’s license</li>
+</ul>
+<p>If this file doesn’t exist, you will be asked for the respective data and it will be created. If your company is GNU, you won’t be asked for licenses, because they are known. If not, you have to create such licenses. They will be automatically used for generating the source code headers. Examples for those company licenses can be found in the <em>gtgt</em> documentation directory installed under <code>$PREFIX/share/doc/gtgt</code>.</p>
+<h2 id="usage---faq"><a id="p30" />Usage -&gt; <a href="./FAQ.md">FAQ</a></h2>
+<h2 id="license"><a id="p40" />License</h2>
+<ol start="3" type="a">
+<li>2020 Karsten Reincke, Deutsche Telekom: <em>gitty-gitty</em> is licensed under the GNU General Public License 3.0</li>
+</ol>
+<p>Due to the fact, that <em>gtgt</em> is a code generator and that its sub scripts contain code (which is copied into the generated sources), one can conclude that the files generated by <em>gtgt</em> are a derivative work of <em>gtgt</em> itself and that the copyleft effect of the GPL-v3 is triggered. <strong>That is not intended by</strong> <strong><em>gitty-gitty</em></strong>: We explicitly state that the code generated by <em>gtgt</em> and its components is not covered by the copyleft effect and can be published under any open or closed source license.</p>

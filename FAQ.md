@@ -78,7 +78,7 @@ For using *gtgt* you must have installed:
 ## <a id="q003"></a> **Where can I get 'gtgt'?**
 
 There are two options to get *gtgt*:
-* You can either clone the respective GitHub repository using the command [https://github.com/kreincke/gitty-gitty.git](https://github.com/kreincke/gitty-gitty.git)
+* You can either clone the respective GitHub repository using the command ``git clone [https://github.com/kreincke/gitty-gitty.git](https://github.com/kreincke/gitty-gitty.git)``
 * Or you can download a tarball from [gtgt-release-banch](https://github.com/kreincke/gitty-gitty/tree/releases)
 
 ## <a id="q004"></a> **How can I install 'gtgt'?**

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pandoc -o doc/index.html README.md
+pandoc -o doc/gtgt.html FAQ.md
