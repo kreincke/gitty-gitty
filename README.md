@@ -26,7 +26,7 @@ Please see the file COPYING for details.
 
 If one uses the *autotools*, one can hardly use the GNU development tools to create software licensed under the terms of a NON-GNU-license. *gtgt* closes this gap: It shall enable the developers to use the GNU tools even if the result is licensed under a NON-GNU-License.
 
-The current release is [<#4.0.0#>](./releases/gtgt-4.0.0.tar.gz)
+The current release is [<#4.0.0#>](https://github.com/kreincke/gitty-gitty/tree/releases)
 
 * [Getting *gitty-gitty*](#p10)
 * [The Structure of *gitty-gitty*](#p20)
@@ -50,7 +50,7 @@ With the help of your operating system / Linux distribution install the followin
 
 You have two options to get *gtgt*:
 * you can either clone its GitHub repository by using the command ``git clone https://github.com/kreincke/gitty-gitty.git``
-* or you can download the corresponding [gtgt-tarball](./releases/)
+* or you can download the corresponding [gtgt-release-branch](https://github.com/kreincke/gitty-gitty/tree/releases)
 
 ### <a id="p13" />- Installation
 
