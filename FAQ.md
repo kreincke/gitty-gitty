@@ -50,6 +50,8 @@ Please see the file COPYING for details.
 * [How can I give feedback?](#q024)
 * [What about the program context?](#q025)
 * [What about the program history?](#q026)
+* [What is a typical gtgt / autotools cycle](#q027)
+* [How can I enforce the strict GNU autotool modus](#q028)
 * What shall I do if I get one of the following fault messages?
 - [What about '... cannot open shared object file: No such file ...'?](#fm01)
 <!-- * [ ](#q025)
@@ -387,6 +389,33 @@ The development of *gtgt* started in the year 2000. The results up to release 3.
 But these versions are deprecated.
 
 In the year 2020, I could reactivate *gtgt* as release 4.0 during my working hours due to the fact, that my company 'Deutsche Telekom AG' needed *gtgt* to implement a test driven working model in the ***OpenChain*** *compliance tooling working group*. Because *gtgt* has already been published under the terms of the GPL-v3 in the year 2000, it is clear, that also this new version is released under the GPL-v3.
+
+## <a id="q027"></a> **What is a typical gtgt / autotools cycle?**
+- **Initialization:**
+  1. Download and extract the GNU tarball created by *gtgt* or
+  2. call ``gptg -c myproject``
+- **Initial check:**
+  1. change into the project dir and call ``./configure``
+  2. If that fails call ``./reconf`` and recall ``./configure``
+  3. call ``make``
+- **Compilation / Instllation:**
+  1. ``./configure --prefix=YOURPATH`` prepares your sources to be compiled with respect to your envronment and installed under YOURPATH
+  2. ``make`` compiles your sources
+  3. ``sudo make install``  installs the compiled program / libs under YOURPATH
+  4. ``sudo make uninstall`` removes all components from YOURPATH
+- **Development:** Use the methods described in the section [What if I want to build my tarball with more or less or other source files than instantiated by the *gptg* script?](#q009)
+- Autotool debugging:
+  1. change into your project directory.
+  2. call ``./prepClearRepCommit``
+  3. call ``./reconf``
+  4. call ``aclocal`` and manage the fault messages by using the methods auf the autotools
+  4. call ``autoconf`` and manage the fault messages using the methods auf the autotools
+  5. call ``automake`` and manage the fault messages using the methods auf the autotools
+
+## <a id="q028"></a> **How can I enforce the strict GNU autotool modus?**
+*gtgt* configures the *autotools* - particularly *automake* - with the option ``AUTOMAKE_OPTIONS = foreign``. This allow us, to 'ignore' the file structure required by the GNU autotools. For example, we can use a file *README.md* instead of the required file *README*.
+
+If you want strictly to follow the GNU standard, then comment out the respective line in your file ``Makefile.am``. Then call ``aclocal``, ``autoconf``, and ``automake`` and fix the arising fault messages. With ``automake --add-missing`` you can let instantiate the missed files required by the *autotools*.
 
 ## What shall I do if I get one of the following fault messages?
 
