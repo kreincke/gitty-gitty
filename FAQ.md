@@ -402,6 +402,7 @@ In the year 2020, I could reactivate *gtgt* as release 4.0 during my working hou
   1. ``./configure --prefix=YOURPATH`` prepares your sources to be compiled with respect to your envronment and installed under YOURPATH
   2. ``make`` compiles your sources
   3. ``sudo make install``  installs the compiled program / libs under YOURPATH
+  4. ``sudo ldconfig`` makes the libs you installed known to your operating system
   4. ``sudo make uninstall`` removes all components from YOURPATH
 - **Development:** Use the methods described in the section [What if I want to build my tarball with more or less or other source files than instantiated by the *gptg* script?](#q009)
 - Autotool debugging:
