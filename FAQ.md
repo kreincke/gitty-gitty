@@ -74,6 +74,7 @@ For using *gtgt* you must have installed:
   - libtools
   - doxygen
   - graphviz
+  - pandoc
 
 ## <a id="q003"></a> **Where can I get 'gtgt'?**
 

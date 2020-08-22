@@ -21,6 +21,9 @@ Please see the file COPYING for details.
 -------------------------------------------------------
 For details see http://www.gnu.org/ or read the file COPYING
 -------------------------------------------------------
+2020-08-22 :- published gtgt release 4.0.1
+2020-08-22   - derived doc/.html from README.md via pandoc
+             - fixed COMPANY with multiple words
 2020-08-21 :- published gtgt release 4.0.0
              - aligned the tools for using GitHub 
              - rewritten README and FAQ in the md format

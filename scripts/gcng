@@ -102,17 +102,17 @@ function get_copyright_data
    echo -n "The name of your company is:                  "
    read COMPANY
 
-   if [ -z $COMPANY ];
+   if [ -z "$COMPANY" ];
    then
         COMPANY="GNU"
    else
-        if [ $COMPANY = "gnu" ];
+        if [ "$COMPANY" = "gnu" ];
         then
             COMPANY="GNU"
         fi
    fi
 
-   if [ $COMPANY != "GNU" ]
+   if [ "$COMPANY" != "GNU" ]
    then
         echo "insert the path of the short copyright-note of your company and"
         echo "the path of its long copyright-note (don't use relative paths)"
@@ -157,7 +157,7 @@ function get_copyright_data
 function generic_copyright
 {
     CR="Copyright (C) ${AUT_YEAR} ${AUT_NAME}"
-    if [ ${COMPANY} != "GNU" ];
+    if [ "${COMPANY}" != "GNU" ];
     then
         CR="${CR} / ${COMPANY}"
     fi
@@ -177,7 +177,7 @@ function generic_header
 {
     generic_copyright
     echo " "
-    if [ ${COMPANY} = "GNU" ];
+    if [ "${COMPANY}" = "GNU" ];
     then
         cat << EOF
 This file is part of of the software-project ${FPRJNAME}.
@@ -218,7 +218,7 @@ function special_header
 {
     generic_copyright
     echo " "
-    if [ ${COMPANY} = "GNU" ];
+    if [ "${COMPANY}" = "GNU" ];
     then
 
  cat << EOF
@@ -278,7 +278,7 @@ function guile_header
 
     generic_copyright
     echo " "
-    if [ ${COMPANY} = "GNU" ];
+    if [ "${COMPANY}" = "GNU" ];
     then
  cat <<EOF
 
@@ -902,7 +902,7 @@ case $1 in
   am_header
   ;;
 -l)
-  if [ $COMPANY = "GNU" ];
+  if [ "$COMPANY" = "GNU" ];
   then
     print_gnu_public_license
   else
@@ -913,7 +913,7 @@ case $1 in
   generic_copyright
   ;;
 -ech)
-  if [ $COMPANY = "GNU" ];
+  if [ "$COMPANY" = "GNU" ];
   then
     echo_gnu_license_hint $2
   else

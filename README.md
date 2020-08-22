@@ -45,6 +45,7 @@ With the help of your operating system / Linux distribution install the followin
   - libtools
   - doxygen
   - graphviz
+  - pandoc
 
 ### <a id="p12" />- Sources
 

@@ -159,10 +159,25 @@ function make_README
 # ${PROJECT} / release <#${RELEASE}#>
 
 `gcng -ecl ${PROJECT}`
--------------------------------------------------------
+
+## Content
+1. [Purpose](#pur)
+2. [Prerequisites](#prq)
+3. [Download](#dlo)
+4. [Installation](#ins)
+5. [Usage](#use)
+6. [Licensing](#lic)
+
+## 1. Purpose <a id="pur"></a>
+## 2. Prerequisites <a id="prq"></a>
+## 3. Download <a id="dlo"></a>
+## 4. Installation <a id="ins"></a>
+## 5. Usage <a id="use"></a>
+## 6. Licensing <a id="lic"></a>
+
 `gcng -ech ${PROJECT}`
 Please see the file COPYING for details.
--------------------------------------------------------
+
 For documentation, please see the files in the doc subdirectory.
 For building and installation instructions please see the INSTALL file.
 EOF
@@ -237,54 +252,19 @@ function make_doclevel_makefile
     echo "updating Makefile.am for directory doc"
     cat >>Makefile.am << EOF
 ${PROJECT}_helpdir = \$(datadir)/doc/${project}/
-${PROJECT}_help_DATA = ${project}_index.html
-EXTRA_DIST = ${project}_index.html
+${PROJECT}_help_DATA = ${project}.html
+EXTRA_DIST = ${project}.html
+
+doc:
+	pandoc -o ${project}.html ../README.md
+
 EOF
 
 }
 
 function make_htmldoc
 {
-    cat >> ${project}_index.html << EOF
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
-<html>
-<!--
-${PROJECT} release <#${RELEASE}#> -- index.html
-`gcng -ech`
-Please see the file COPYING for details.
--->
-<head>
-<title> ${PROJECT} - documentation </title>
-</head>
-<body bgcolor="#FFc545" text="#000000" link="#0000FF" vlink="READ" alink="#008000">
-<h3><b><i>${PROJECT} - documentation</i></b></h3>
-<h3><i>(0) content</i></h3>
-<p>
-	<ol>
-	<li><a href="#gp">general purpose</a></li>
-	<li><a href="#ia">involved applications</a></li>
-	<li><a href="#ic">installation-conditions</a></li>
-	<li><a href="#gr">general remarks</a></li>
-	<li><a href="#sh">special hints for the use (handbook)</a></li>
-	</ol>
-</p>
-<p>
-copyright (c) ${AUT_YEAR} ${AUTNAME} <a href="mailto: ${AUT_EMAIL}">${AUT_EMAIL}</a>
-</p>
-<h3><i>(1) <a name="gp">general purpose</a></i></h3>
-<h3><i>(2) <a name="ia">involved applications</a></i></h3>
-	<dl>
-		<dt><b><i>???</i></b></dt>
-		<dd>... does ...</dd>
-	</dl>
-
-<h3><i>(3) <a name="ic">installation-conditions</a></i></h3>
-<h3><i>(4) <a name="gr">general remarks</a></i></h3>
-<h3><i>(5) <a name="sh">special hints for the use (handbook)</a></i></h3>
-</body>
-</html>
-
-EOF
+  pandoc -o ${project}.html ../README.md
 }
 
 function make_scriptlevel_makefile
