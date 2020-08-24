@@ -1259,26 +1259,9 @@ function write_chrefile
   cat > $CHREFILE <<EOF
 #!/bin/bash
 
-#
-# Copyright (C) 2000 - 2020 Karsten Reincke <k.reincke@fodina.de>
-# This file is part of of the software-project ${PROJECT}.
-#
-# ${PROJECT} is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-#
-# file <change-release> version <#3.2.0#> of project <GTGT>
+# file <change-release> version ${RELEASE} of project ${PROJECT}
 
-#---------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 #  define the mimetypes which shall be reviewed
 CFP="\
 \*.html \
@@ -1302,7 +1285,7 @@ NEWS \
 README.md \
 THANKS \
 "
-#---------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # change the following 6 variables with respect to this pattern
 # version-number is RELEASE.REVISION.STEP
 
@@ -1666,7 +1649,7 @@ PROJECT=`toUpper $PROJECT`
 
 DOXYFILE=Doxyfile
 CHREFILE=change-release
-PREPCLEARREPCOMMITFILE="prepClearRepCommit.sh"
+PREPCLEARREPCOMMITFILE="prepClearRepCommit"
 PRJSPECFILE="prj.spec"
 ADD_TOPLEVEL_DIST="$DOXYFILE $CHREFILE $PREPCLEARREPCOMMITFILE $PRJSPECFILE"
 

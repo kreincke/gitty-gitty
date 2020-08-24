@@ -422,16 +422,20 @@ function am_header
 
 function echo_company_license_hint
 {
-    if [ -z $1 ];
+    if [ -z "$1" ];
     then
-        OFFER="this package"
+        OFFER=""
     else
-        OFFER="this package named <$1>"
+        OFFER="named <$1>"
     fi
 
-    echo "$OFFER is totally published under a special"
-    echo "license of the company $COMPANY. it is not free!"
-    echo "for details have a look at the file COPYING"
+    cat << EOF
+This file/package (${OFFER}) is part of the software-project ${FPRJNAME}
+
+It is licensed under the terms of the license
+as it is specified by the files COPYING or License in the top directory
+
+EOF
 }
 
 function echo_gnu_license_hint
