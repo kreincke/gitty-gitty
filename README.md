@@ -18,7 +18,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 Please see the file COPYING for details.
 -------------------------------------------------------
-# file <change-release> version <#4.0.0#> of project <GTGT>
+# file <change-release> version <#4.1.0#> of project <GTGT>
 -->
 ![gitty-gitty logo](doc/gtgt.gif)
 
@@ -26,7 +26,7 @@ Please see the file COPYING for details.
 
 If one uses the *autotools*, one can hardly use the GNU development tools to create software licensed under the terms of a NON-GNU-license. *gtgt* closes this gap: It shall enable the developers to use the GNU tools even if the result is licensed under a NON-GNU-License.
 
-The current release is [<#4.0.0#>](https://github.com/kreincke/gitty-gitty/tree/releases)
+The current release is [<#4.1.0#>](https://github.com/kreincke/gitty-gitty/tree/releases)
 
 * [Getting *gitty-gitty*](#p10)
 * [The Structure of *gitty-gitty*](#p20)

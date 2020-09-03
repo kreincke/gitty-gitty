@@ -15,41 +15,36 @@
 # along with this program; if not, write to the Free Software 
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #  
-# file <change-release> version <#4.0.0#> of project <GTGT>
+# file <change-release> version <#4.1.0#> of project <GTGT>
 
 #---------------------------------------------------------------------------------
 #  define the mimetypes which shall be reviewed
 CFP="\
-*.html \
-*.txt \
-*.cpp \
-*.cc \
-*.c \
-*.h \
-*.sh \
-*.c \
-*.in \
 AUTHORS \
 ChangeLog \
 configure.in \
 Doxyfile \
 Makefile.am \
 NEWS \
-README \
+README.md \
 THANKS \
+Backlog.md \
+FAQ.md \
+gptg gcng gcsg
+change-release
 "
 
 #---------------------------------------------------------------------------------
 # change the following variables for adding new release numbers 
-OLDRELEASE=3    	# defines a release and a library interface
-OLDREVISION=2   	# defines a more important revision of a release
+OLDRELEASE=4    	# defines a release and a library interface
+OLDREVISION=0   	# defines a more important revision of a release
 OLDSTEP=0       	# defines a lowlevel revesion of a release
       	      	      	# (doesn't concern libraries
 OLDLIBAGE=0   	      	# indicates how many of the elder
       	      	      	# library-releases offer the same interface 
 
 NEWRELEASE=4
-NEWREVISION=0
+NEWREVISION=1
 NEWSTEP=0
 NEWLIBAGE=0   	      	
 
@@ -91,11 +86,11 @@ cat xyz.tmp | while read mt; do
   done
 done
 
-find . -type f -name "configure.in" |
+find . -type f -name "configure.ac" |
 while read file; do
-  echo "setting $OLDVERSION onto $NEWVERSION in configure.in"
+  echo "setting $OLDVERSION onto $NEWVERSION in configure.ac"
   mv $file $file.sav
-  sed -e "/(mypmpsfactory,$OLDVERSION)/s/$OLDVERSION/$NEWVERSION/" $file.sav > $file
+  sed -e "/[$OLDVERSION)]/s/$OLDVERSION/$NEWVERSION/" $file.sav > $file
   rm $file.sav
 done
 

@@ -15,9 +15,9 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# file <gcng> version <#4.0.0#> of project <GTGT>
+# file <gcng> version <#4.1.0#> of project <GTGT>
 
-VERSION="<#4.0.0#>"
+VERSION="<#4.1.0#>"
 
 # =============================
 # == Usage related functions ==

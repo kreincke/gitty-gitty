@@ -1,4 +1,4 @@
-Project GTGT / release <#4.0.0#> -- ChangeLog
+Project GTGT / release <#4.1.0#> -- ChangeLog
 gtgt (pronounce gittygitty): general(or gnu)-template-generation-tools
 Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
 -------------------------------------------------------
@@ -22,7 +22,8 @@ Please see the file COPYING for details.
 For details see http://www.gnu.org/ or read the file COPYING
 -------------------------------------------------------
            :-  published gtgt release 4.1.0
-2020-09-02   - erased (c) line in reconf, prepClearCommit and changerelease
+2020-09-02   - improved change-release script
+             - erased (c) line in reconf, prepClearCommit and change-release
              - made doxygen documentation reclaimable by a make command
              - made ${project}.html reclaimable by a make command
 2020-08-22   - derived doc/.html from README.md via pandoc

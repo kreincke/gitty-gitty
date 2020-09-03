@@ -19,7 +19,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 Please see the file COPYING for details.
 -------------------------------------------------------
-# file <change-release> version <#4.0.0#> of project <GTGT>
+# file <change-release> version <#4.1.0#> of project <GTGT>
 -->
 # gtgt FAQ:
 

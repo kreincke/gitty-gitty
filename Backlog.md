@@ -1,4 +1,4 @@
-# GTGT / release <#4.0.0#> Backlog
+# GTGT / release <#4.1.0#> Backlog
 
 *Copyright (C) Karsten Reincke, Deutsche Telekom AG*
 

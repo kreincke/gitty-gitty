@@ -23,9 +23,9 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# file <gptg> version <#4.0.0#> of project <GTGT>
+# file <gptg> version <#4.1.0#> of project <GTGT>
 
-VERSION="<#4.0.0#>"
+VERSION="<#4.1.0#>"
 
 # =============================
 # == Usage related functions ==
@@ -1183,6 +1183,8 @@ function write_prepClearRepCommit
 
      cat >> $PREPCLEARREPCOMMITFILE <<EOF
 #!/bin/sh
+# file <prepClearRepCommit> version <#${RELEASE}#> of project ${PROJECT}
+#-------------------------------------------------------------------------------
 
 if [ ! -f Makefile ];
 then
@@ -1276,8 +1278,7 @@ function write_chrefile
   cat > $CHREFILE <<EOF
 #!/bin/bash
 
-# file <change-release> version ${RELEASE} of project ${PROJECT}
-
+# file <change-release> version <#${RELEASE}#> of project ${PROJECT}
 #-------------------------------------------------------------------------------
 #  define the mimetypes which shall be reviewed
 CFP="\
@@ -1301,6 +1302,8 @@ Makefile.am \
 NEWS \
 README.md \
 THANKS \
+change-release
+prepClearRepCommit
 "
 #-------------------------------------------------------------------------------
 # change the following 6 variables with respect to this pattern
