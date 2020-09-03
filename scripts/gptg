@@ -259,11 +259,11 @@ doc:
 	pandoc -o ${project}.html ../README.md
 
 clear:
-  if [ -e ${project}.html ]; then rm ${project}.html; fi
-  if [ -e doxygen ]; then rm -rf doxygen ; fi
+	if [ -e ${project}.html ]; then rm ${project}.html; fi
+	if [ -e doxygen ]; then rm -rf doxygen ; fi
 
 doxygen:
-  doxygen ../Doxyfile
+	doxygen ../Doxyfile
 
 EOF
 
