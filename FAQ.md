@@ -286,9 +286,13 @@ The main point of this procedure is this: make recursively follows the structure
 Last but not least, we have added the doxygen documentation style into the automatically generated source-files of your project initially created by the gitty-gitty-tools. This includes that
 
 * the corresponding default doxygen configuration file (named Doxyconf) will automatically be generated inside of the project-directory
-* all pieces of sourcecode are already be commented in the doxygen style
-* the initial version of corresponding doxygen sourcecode documentation will be automatically generated while creating the initial version of your project
-* the whole sourcecode doxygen documentation of the initial-version of your project can be found under doc/doxygen/
+* all pieces of source-code are already be commented in the doxygen style
+* the initial version of corresponding doxygen source-code documentation will be automatically generated while creating the initial version of your project
+* if you've modified your sources and want to update your documentation then
+  - ``cd doc``
+  - ``make clear``
+  - ``make doxygen doc``
+* the autoatically generated source-code doxygen documentation can be found under doc/doxygen/
 
 For being generally acceptable, we have adopted the c++ and c coding standard. But note: There doesn't exist "**the** coding standard"; you can find more than one which differ in more or less details. Therefore we give only one hint for a [C++ Coding
 Standard](http://www.possibility.com/Cpp/CppCodingStandard.html) while recommending to have a look at the others, being found with some search engine.

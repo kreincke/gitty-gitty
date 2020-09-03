@@ -258,6 +258,13 @@ EXTRA_DIST = ${project}.html
 doc:
 	pandoc -o ${project}.html ../README.md
 
+clear:
+  if [ -e ${project}.html ]; then rm ${project}.html; fi
+  if [ -e doxygen ]; then rm -rf doxygen ; fi
+
+doxygen:
+  doxygen ../Doxyfile
+
 EOF
 
 }
@@ -625,6 +632,11 @@ echo "- autoheader."
 autoheader
 echo "- automake."
 automake -a
+
+echo "- doxygen."
+if [ -e doc/doxygen ]; then rm -rf doc/doxygen ; fi
+doxygen Doxyfile
+
 exit
 
 EOF
@@ -946,6 +958,10 @@ autoheader
 echo "- automake."
 automake -a
 
+echo "- doxygen."
+if [ -e doc/doxygen ]; then rm -rf doc/doxygen ; fi
+doxygen Doxyfile
+
 exit
 EOF
  chmod u+x reconf
@@ -1248,6 +1264,8 @@ then
   svn propset svn:ignore -F .cvsignore .;
 fi
 cp .cvsignore .gitignore
+
+if [ -e doc/doxygen ]; then rm -rf doc/doxygen ; fi
 
 EOF
  chmod u+x  $PREPCLEARREPCOMMITFILE
