@@ -1,6 +1,6 @@
 # GTGT / release <#4.0.0#> Backlog
 
-*Copyright (C) Karsten Reincke, Deutsche Telekom AG*
+*Copyright (C) Karsten Reincke, Deutsche Telekom AG - 2020*
 
 *gtgt* was started in the year 2000 lived a while and then slept for a long time in the cemetery of discarded software. In that meantime, much has developed, particularly concerning the autotools themselves, the programming languages, the development environments, and the open source compliance.
 
