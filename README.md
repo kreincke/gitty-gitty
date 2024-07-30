@@ -1,5 +1,5 @@
 <!--
-Copyright (C) 2020 Karsten Reincke, Deutsche Telekom AG
+Copyright (C) 2020 Karsten Reincke (Hohenahr, Germany), Deutsche Telekom AG
 -------------------------------------------------------
 This file is part of of the software-project GTGT.
 
